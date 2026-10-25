@@ -167,6 +167,46 @@
     .step p { color: #aebbd0; font-size: 14px; }
 
     .contact { text-align: center; }
+    
+.input-with-icon {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 0 14px;
+  border: 1px solid #39465c;
+  border-radius: 8px;
+  background: #111a29;
+  color: #f5c76b;
+}
+
+.input-with-icon > span {
+  padding-top: 14px;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.input-with-icon input,
+.input-with-icon textarea {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #ffffff;
+  font: inherit;
+}
+
+.input-with-icon textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.input-with-icon:focus-within {
+  border-color: #f5c76b;
+  box-shadow: 0 0 0 2px rgba(245, 199, 107, 0.15);
+}
+
 .contact form {
   max-width: 600px;
   margin: 30px auto 0;
@@ -335,23 +375,38 @@
   <input type="hidden" name="_subject" value="New TRUE CULTURE Website Enquiry">
 
   <p>
-    <input type="text" name="name" placeholder="Your Full Name" required>
+   <div class="input-with-icon">
+  <span>👤</span>
+  <input type="text" name="name" placeholder="Your Full Name" required>
+</div>
   </p>
 
   <p>
-    <input type="text" name="hotel" placeholder="Hotel Name" required>
+    <div class="input-with-icon">
+  <span>🏨</span>
+  <input type="text" name="hotel" placeholder="Hotel Name" required>
+</div>
   </p>
 
   <p>
-    <input type="tel" name="phone" placeholder="Mobile Number" required>
+    <div class="input-with-icon">
+  <span>📱</span>
+  <input type="tel" name="phone" placeholder="Mobile Number" required>
+</div>
   </p>
 
   <p>
-    <input type="email" name="email" placeholder="shivambr0187@gmail.com" required>
+    <div class="input-with-icon">
+  <span>✉️</span>
+  <input type="email" name="email" placeholder="shivambr0187@gmail.com" required>
+</div>
   </p>
 
   <p>
-    <textarea name="message" placeholder="Tell us about your project" required></textarea>
+    <div class="input-with-icon">
+  <span>📝</span>
+  <textarea name="message" placeholder="Tell us about your project" required></textarea>
+</div>
   </p>
 
   <button class="button" type="submit">Send Enquiry</button>

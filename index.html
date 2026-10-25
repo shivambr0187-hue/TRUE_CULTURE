@@ -167,7 +167,45 @@
     .step p { color: #aebbd0; font-size: 14px; }
 
     .contact { text-align: center; }
+.contact form {
+  max-width: 600px;
+  margin: 30px auto 0;
+  display: grid;
+  gap: 16px;
+}
 
+.contact input,
+.contact textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #39465c;
+  border-radius: 8px;
+  background: #111a29;
+  color: #ffffff;
+  font: inherit;
+}
+
+.contact textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.contact input:focus,
+.contact textarea:focus {
+  outline: 2px solid #f5c76b;
+  border-color: #f5c76b;
+}
+
+.contact form p {
+  margin: 0;
+}
+
+.contact form button {
+  justify-self: center;
+  cursor: pointer;
+  border: none;
+  font: inherit;
+}
     footer {
       border-top: 1px solid #263248;
       text-align: center;

@@ -185,8 +185,10 @@
   flex-shrink: 0;
 }
 
+
 .input-with-icon input,
-.input-with-icon textarea {
+.input-with-icon textarea,
+.input-with-icon select {
   flex: 1;
   min-width: 0;
   width: 100%;
@@ -197,9 +199,14 @@
   font: inherit;
 }
 
-.input-with-icon textarea {
-  min-height: 140px;
-  resize: vertical;
+.input-with-icon select {
+  cursor: pointer;
+  color: #ffffff;
+}
+
+.input-with-icon select option {
+  background: #111a29;
+  color: #ffffff;
 }
 
 .input-with-icon:focus-within {
@@ -411,10 +418,24 @@
 </div>
   </p>
 
+  <p> 
+<div class="input-with-icon">
+  <span>📋</span>
+  <select name="project_type" required>
+    <option value="" disabled selected>Select Project Type</option>
+    <option value="Hotel Website">Hotel Website</option>
+    <option value="Online Booking System">Online Booking System</option>
+    <option value="Hotel Mobile App">Hotel Mobile App</option>
+    <option value="Enquiry Management System">Enquiry Management System</option>
+    <option value="Other Services">Other Services</option>
+  </select>
+</div>  
+  </p>
+
   <p>
     <div class="input-with-icon">
   <span>✉️</span>
-  <input type="email" name="email" placeholder="shivambr0187@gmail.com" required>
+  <input type="email" name="email" placeholder="Your Email Address" required>
 </div>
   </p>
 

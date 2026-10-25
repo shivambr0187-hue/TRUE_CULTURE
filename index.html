@@ -1,36 +1,280 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TRUE CULTURE creates modern websites and digital booking solutions for hotels and hospitality businesses.">
   <title>TRUE CULTURE | Hotel Digital Solutions</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #0b1120;
+      color: #f8fafc;
+      line-height: 1.7;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    header {
+      padding: 22px 0;
+      border-bottom: 1px solid #263247;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      color: #fbbf24;
+      font-size: 24px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    nav a {
+      color: #e2e8f0;
+      text-decoration: none;
+      margin-left: 18px;
+    }
+
+    nav a:hover {
+      color: #fbbf24;
+    }
+
+    .hero {
+      padding: 100px 0;
+      text-align: center;
+      background: radial-gradient(circle at top, #1e3a5f, #0b1120 65%);
+    }
+
+    .tag {
+      color: #fbbf24;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: clamp(38px, 7vw, 68px);
+      line-height: 1.15;
+      margin: 20px 0;
+    }
+
+    .hero p {
+      max-width: 680px;
+      margin: 0 auto 28px;
+      color: #cbd5e1;
+      font-size: 18px;
+    }
+
+    .button {
+      display: inline-block;
+      background: #fbbf24;
+      color: #111827;
+      padding: 13px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    section {
+      padding: 70px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 34px;
+      margin-bottom: 12px;
+    }
+
+    .section-intro {
+      text-align: center;
+      color: #94a3b8;
+      max-width: 650px;
+      margin: 0 auto 35px;
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #131d30;
+      border: 1px solid #29364b;
+      padding: 25px;
+      border-radius: 14px;
+    }
+
+    .card .icon {
+      font-size: 32px;
+    }
+
+    .card h3 {
+      margin: 12px 0;
+      color: #fbbf24;
+    }
+
+    .card p, .about p {
+      color: #cbd5e1;
+    }
+
+    .about {
+      background: #101a2b;
+      text-align: center;
+    }
+
+    .about p {
+      max-width: 750px;
+      margin: 15px auto;
+    }
+
+    .contact {
+      text-align: center;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px 0;
+      border-top: 1px solid #263247;
+      color: #94a3b8;
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        justify-content: center;
+      }
+
+      nav a {
+        margin: 0 8px;
+      }
+
+      .hero {
+        padding: 70px 0;
+      }
+
+      section {
+        padding: 50px 0;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <h1>TRUE CULTURE</h1>
-  <p>Created by Shivam Brijwasi</p>
-  <h2>Hotel & Hospitality Digital Solutions</h2>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">TRUE CULTURE</div>
+        <div>
+          <a href="#home">Home</a>
+          <a href="#services">Services</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
 
-  <p>
-    We help hotels build a professional online presence
-    through modern websites and booking solutions.
-  </p>
+  <main>
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="tag">Hotel & Hospitality Digital Solutions</div>
+        <h1>Build Your Hotel's<br>Digital Future</h1>
+        <p>
+          We are building modern digital solutions to help
+          hotels improve their online presence, showcase their
+          rooms and connect with more customers.
+        </p>
+        <a class="button" href="#services">Explore Our Services</a>
+      </div>
+    </section>
 
-  <h2>Our Services</h2>
-  <ul>
-    <li>Hotel Website Design</li>
-    <li>Hotel Booking Websites</li>
-    <li>Booking Application Development</li>
-    <li>Customer Enquiry Systems</li>
-  </ul>
+    <section id="services">
+      <div class="container">
+        <h2 class="section-title">Our Services</h2>
+        <p class="section-intro">
+          Digital solutions planned for hotels and hospitality businesses.
+        </p>
 
-  <h2>About Me</h2>
-  <p>
-    I am building TRUE CULTURE to create digital
-    solutions for hotels and hospitality businesses.
-  </p>
+        <div class="services">
+          <div class="card">
+            <div class="icon">🌐</div>
+            <h3>Hotel Websites</h3>
+            <p>Modern, responsive website concepts to present your hotel online.</p>
+          </div>
 
-  <h2>Contact</h2>
-  <p>Contact details coming soon.</p>
+          <div class="card">
+            <div class="icon">🛎️</div>
+            <h3>Booking Solutions</h3>
+            <p>Booking website concepts to help guests explore rooms and request reservations.</p>
+          </div>
+
+          <div class="card">
+            <div class="icon">📱</div>
+            <h3>App Concepts</h3>
+            <p>User-friendly application concepts for hospitality businesses.</p>
+          </div>
+
+          <div class="card">
+            <div class="icon">💬</div>
+            <h3>Enquiry Systems</h3>
+            <p>Simple ways for customers to contact a hotel and ask about availability.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="container">
+        <h2 class="section-title">About TRUE CULTURE</h2>
+        <p><strong>Created by Shivam Brijwasi</strong></p>
+        <p>
+          TRUE CULTURE is a growing portfolio project focused on
+          digital experiences for hotels and hospitality businesses.
+          Our goal is to make online information and customer enquiries
+          simpler, clearer and more accessible.
+        </p>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container">
+        <h2 class="section-title">Let's Connect</h2>
+        <p class="section-intro">
+          Interested in a hotel website or digital solution?
+          Contact details will be added here soon.
+        </p>
+        <a class="button" href="#home">Back to Top ↑</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © 2026 TRUE CULTURE | Created by Shivam Brijwasi
+    </div>
+  </footer>
 </body>
 </html>

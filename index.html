@@ -3,30 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="TRUE CULTURE — Modern websites and digital solutions for hotels and hospitality businesses." />
-  <meta name="theme-color" content="#080d18" />
+  <meta name="description" content="TRUE CULTURE — Luxury website and digital experiences for hotels and hospitality brands." />
+  <meta name="theme-color" content="#0b1320" />
   <meta property="og:title" content="TRUE CULTURE | Digital Experiences" />
-  <meta property="og:description" content="Modern websites and digital solutions for hotels and hospitality businesses." />
+  <meta property="og:description" content="Luxury website and digital experiences for hotels and hospitality brands." />
   <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80" />
   <title>TRUE CULTURE | Digital Experiences</title>
 
   <style>
     :root {
-      --bg: #080d18;
-      --bg-soft: #101827;
-      --panel: #111a29;
-      --panel-2: #151f30;
-      --panel-3: #1b2438;
-      --line: #263248;
-      --line-soft: #39465c;
-      --gold: #f5c76b;
-      --gold-deep: #d99a32;
-      --gold-soft: #ffdf9b;
-      --text: #f8fafc;
-      --muted: #c3cedd;
-      --muted-2: #9caabe;
-      --shadow: rgba(245, 199, 107, 0.18);
-      --success: #7bdcb5;
+      --bg: #0b1320;
+      --bg-2: #0f1a2b;
+      --panel: #121f31;
+      --panel-2: #18273d;
+      --gold: #f4c77d;
+      --gold-2: #dba65a;
+      --gold-soft: #ffe2aa;
+      --text: #f7f8fb;
+      --muted: #d7deef;
+      --muted-2: #a7b5c8;
+      --line: rgba(255,255,255,0.08);
+      --shadow: rgba(0,0,0,0.24);
+      --success: #7fe0b0;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -45,12 +44,37 @@
       margin: 0 auto;
     }
 
+    .eyebrow {
+      display: inline-block;
+      color: var(--gold);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-size: 11px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.15;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .section-copy {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 36px;
+      color: var(--muted-2);
+      font-size: 16px;
+    }
+
     header {
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(8, 13, 24, 0.92);
-      backdrop-filter: blur(10px);
+      background: rgba(11, 19, 32, 0.88);
+      backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--line);
     }
 
@@ -58,15 +82,35 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
+      gap: 22px;
       padding: 18px 0;
+      flex-wrap: wrap;
     }
 
-    .logo {
-      font-size: 24px;
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #f3d28a, #d79d4a);
+      color: #111827;
+      font-weight: 900;
+      font-size: 15px;
+      box-shadow: 0 10px 25px rgba(245, 199, 107, 0.3);
+    }
+
+    .brand-name {
+      font-size: 22px;
       font-weight: 800;
-      letter-spacing: 2px;
+      letter-spacing: 1.8px;
       color: var(--gold);
     }
 
@@ -78,7 +122,7 @@
     }
 
     .nav-links a {
-      color: #e2e8f0;
+      color: var(--muted);
       text-decoration: none;
       font-size: 14px;
       transition: color 0.2s ease;
@@ -86,232 +130,327 @@
 
     .nav-links a:hover { color: var(--gold); }
 
-    .hero {
-      padding: 110px 0 90px;
-      background: radial-gradient(ellipse at top, #1d3355 0%, var(--bg) 65%);
-      position: relative;
-      overflow: hidden;
+    .btn {
+      display: inline-block;
+      padding: 14px 24px;
+      border-radius: 10px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: 0.2s ease;
+      border: 1px solid transparent;
+      cursor: pointer;
+      font-family: inherit;
     }
 
-    .hero::before {
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold), var(--gold-2));
+      color: #101522;
+      box-shadow: 0 16px 30px rgba(245, 199, 107, 0.22);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 20px 34px rgba(245, 199, 107, 0.28);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border-color: rgba(245, 199, 107, 0.45);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(245, 199, 107, 0.06);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at top left, rgba(245,199,125,0.12), transparent 28%),
+        linear-gradient(120deg, #0d1729 0%, #0b1320 40%, #0e1726 100%);
+      padding: 86px 0 70px;
+    }
+
+    .hero::after {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(90deg, rgba(245, 199, 107, 0.06), transparent 30%, transparent 70%, rgba(245, 199, 107, 0.04));
+      background: linear-gradient(90deg, rgba(255,255,255,0.02), transparent 30%, transparent 70%, rgba(245,199,125,0.04));
       pointer-events: none;
     }
 
-    .hero-inner {
+    .hero-grid {
       position: relative;
       z-index: 1;
-      text-align: center;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      align-items: center;
+      gap: 40px;
     }
 
-    .eyebrow {
-      color: var(--gold);
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      font-size: 12px;
-      font-weight: bold;
+    .hero-copy h1 {
+      font-size: clamp(42px, 6vw, 72px);
+      line-height: 1.02;
+      margin: 0 0 20px;
+      letter-spacing: -1px;
     }
 
-    h1 {
-      font-size: clamp(40px, 7vw, 72px);
-      line-height: 1.08;
-      margin: 22px 0 18px;
-    }
-
-    .gold { color: var(--gold); }
-
-    .hero p {
-      max-width: 760px;
-      margin: 0 auto 32px;
+    .hero-copy p {
       color: var(--muted);
       font-size: 18px;
+      max-width: 620px;
+      margin-bottom: 28px;
     }
 
     .hero-actions {
       display: flex;
-      justify-content: center;
       align-items: center;
       gap: 14px;
       flex-wrap: wrap;
-      margin-bottom: 28px;
+      margin-bottom: 34px;
     }
 
-    .button {
-      display: inline-block;
-      padding: 14px 24px;
-      background: var(--gold);
-      color: #101522;
-      text-decoration: none;
-      font-weight: 700;
-      border-radius: 8px;
-      transition: all 0.2s ease;
-      border: 1px solid transparent;
-    }
-
-    .button:hover {
-      background: var(--gold-soft);
-      transform: translateY(-1px);
-    }
-
-    .button.secondary {
-      background: transparent;
-      border-color: rgba(245, 199, 107, 0.5);
-      color: var(--text);
-    }
-
-    .button.secondary:hover {
-      background: rgba(245, 199, 107, 0.08);
-    }
-
-    .stats {
+    .mini-stats {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      grid-template-columns: repeat(3, minmax(120px, 1fr));
       gap: 18px;
-      max-width: 830px;
-      margin: 0 auto;
-      padding-top: 10px;
+      max-width: 520px;
     }
 
-    .stat {
-      background: rgba(17, 26, 41, 0.8);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 12px;
+    .mini-stat {
+      background: rgba(18, 31, 49, 0.9);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
       padding: 18px 14px;
+      text-align: center;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.12);
     }
 
-    .stat strong {
+    .mini-stat strong {
+      display: block;
+      font-size: 30px;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .mini-stat span {
+      color: var(--muted-2);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .hero-visual {
+      position: relative;
+    }
+
+    .image-card {
+      position: relative;
+      border-radius: 26px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 30px 50px rgba(0,0,0,0.35);
+      background: #111827;
+    }
+
+    .image-card img {
+      width: 100%;
+      height: 620px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .floating-box {
+      position: absolute;
+      right: -14px;
+      bottom: 28px;
+      background: rgba(10, 15, 24, 0.9);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 18px;
+      padding: 18px 20px;
+      width: min(240px, 70%);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 18px 32px rgba(0,0,0,0.2);
+    }
+
+    .floating-box strong {
       display: block;
       color: var(--gold);
-      font-size: 28px;
-      line-height: 1.1;
-      font-weight: 800;
+      font-size: 18px;
+      margin-bottom: 6px;
     }
 
-    .stat span {
-      color: var(--muted-2);
+    .floating-box span {
+      color: var(--muted);
       font-size: 13px;
-      letter-spacing: 0.4px;
-    }
-
-    section {
-      padding: 76px 0;
-    }
-
-    .section-title {
-      font-size: 34px;
-      text-align: center;
+      display: block;
       margin-bottom: 10px;
     }
 
-    .intro {
-      color: var(--muted-2);
-      text-align: center;
-      max-width: 680px;
-      margin: 0 auto 38px;
+    .rating {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--gold);
+      font-size: 14px;
+      font-weight: 700;
     }
 
-    .services {
+    .rating i { font-size: 12px; }
+
+    section {
+      padding: 82px 0;
+    }
+
+    .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 22px;
     }
 
-    .card {
-      background: linear-gradient(145deg, var(--panel-2), #0e1625);
-      border: 1px solid #29374c;
-      border-radius: 14px;
-      padding: 28px 24px;
-      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    .service-card {
+      background: linear-gradient(180deg, #101b2d, #0d1522);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 28px 22px;
+      transition: 0.2s ease;
       box-shadow: 0 10px 20px rgba(0,0,0,0.08);
     }
 
-    .card:hover {
+    .service-card:hover {
       transform: translateY(-5px);
-      border-color: var(--gold);
-      box-shadow: 0 18px 26px rgba(245, 199, 107, 0.08);
+      border-color: rgba(245, 199, 107, 0.55);
+      box-shadow: 0 20px 30px rgba(245, 199, 107, 0.06);
     }
 
-    .icon {
-      font-size: 32px;
-      margin-bottom: 10px;
-    }
-
-    .card h3 {
+    .service-icon {
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      background: rgba(245, 199, 107, 0.09);
       color: var(--gold);
-      margin: 12px 0 8px;
+      font-size: 24px;
+      margin-bottom: 18px;
     }
 
-    .card p {
-      color: #bdc8d8;
+    .service-card h3 {
+      color: var(--gold);
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .service-card p {
+      color: var(--muted-2);
       font-size: 15px;
     }
 
-    .about {
-      background: var(--bg-soft);
-      text-align: center;
-    }
-
-    .about p {
-      max-width: 760px;
-      margin: 15px auto;
-      color: var(--muted);
-    }
-
-    .why-us {
+    .about-wrap {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .about-image {
+      background: linear-gradient(135deg, #1d2f4b, #0e1728);
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 18px 38px rgba(0,0,0,0.18);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 520px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .about-content p {
+      color: var(--muted);
+      margin-bottom: 18px;
+      font-size: 17px;
+    }
+
+    .check-list {
+      list-style: none;
+      display: grid;
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .check-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .check-list i {
+      color: var(--success);
+      margin-top: 4px;
+      font-size: 16px;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
       gap: 18px;
     }
 
-    .why-box {
-      padding: 24px 20px;
+    .why-card {
       background: var(--panel);
-      border: 1px solid #253247;
-      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 24px 18px;
     }
 
-    .why-box h3 {
+    .why-card h3 {
+      font-size: 18px;
       color: var(--gold);
       margin-bottom: 8px;
-      font-size: 18px;
     }
 
-    .why-box p {
-      color: #aebbd0;
+    .why-card p {
+      color: var(--muted-2);
       font-size: 14px;
     }
 
-    .plans {
+    .pricing-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 22px;
     }
 
     .plan {
-      background: linear-gradient(180deg, #121d2d, #0d1523);
-      border: 1px solid #2b3b52;
-      border-radius: 14px;
+      position: relative;
+      background: linear-gradient(180deg, #101d2c, #0d1523);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
       padding: 26px 22px;
+      box-shadow: 0 14px 24px rgba(4,8,16,0.18);
     }
 
     .plan.featured {
-      border-color: var(--gold);
-      box-shadow: 0 0 0 1px rgba(245, 199, 107, 0.32), 0 18px 30px rgba(245, 199, 107, 0.08);
+      border-color: rgba(245, 199, 107, 0.6);
+      box-shadow: 0 0 0 1px rgba(245, 199, 107, 0.25), 0 26px 35px rgba(245, 199, 107, 0.08);
     }
 
-    .plan-tag {
+    .plan-badge {
       display: inline-block;
-      background: rgba(245, 199, 107, 0.12);
-      color: var(--gold);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      padding: 6px 10px;
+      padding: 5px 10px;
       border-radius: 999px;
+      background: rgba(245, 199, 107, 0.1);
+      border: 1px solid rgba(245, 199, 107, 0.2);
+      color: var(--gold);
+      font-size: 10px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      font-weight: 700;
       margin-bottom: 12px;
     }
 
@@ -324,70 +463,79 @@
     .plan p {
       color: var(--muted-2);
       margin-bottom: 18px;
-      font-size: 15px;
     }
 
     .plan ul {
       list-style: none;
-      padding: 0;
-      margin: 0 0 20px;
       display: grid;
-      gap: 10px;
+      gap: 12px;
+      margin-bottom: 24px;
     }
 
     .plan li {
-      color: var(--muted);
-      font-size: 14px;
       position: relative;
       padding-left: 18px;
+      color: var(--muted);
+      font-size: 14px;
     }
 
     .plan li::before {
       content: "✓";
       position: absolute;
       left: 0;
+      top: 0;
       color: var(--success);
       font-weight: 700;
     }
 
-    .steps {
+    .process-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 18px;
     }
 
-    .step {
-      padding: 22px;
+    .process-card {
+      background: #101c2d;
       border-left: 3px solid var(--gold);
-      background: #111a29;
-      border-radius: 0 10px 10px 0;
+      border-radius: 0 14px 14px 0;
+      padding: 22px 20px;
+      min-height: 170px;
     }
 
-    .step h3 { margin-bottom: 8px; }
-    .step p { color: #aebbd0; font-size: 14px; }
+    .process-card h3 {
+      font-size: 18px;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
 
-    .testimonials {
+    .process-card p {
+      color: var(--muted-2);
+      font-size: 14px;
+    }
+
+    .testimonial-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
       gap: 18px;
     }
 
     .quote {
-      background: #111a29;
-      border: 1px solid #2b3b52;
-      border-radius: 14px;
-      padding: 22px 20px;
+      background: #111d2f;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 24px 20px;
     }
 
     .quote p {
-      color: #d9e3f2;
-      margin-bottom: 16px;
+      color: var(--muted);
+      margin-bottom: 18px;
       font-size: 15px;
     }
 
     .quote strong {
-      color: var(--gold);
       display: block;
+      color: var(--gold);
+      margin-bottom: 4px;
     }
 
     .quote span {
@@ -395,121 +543,117 @@
       font-size: 13px;
     }
 
-    .contact { text-align: center; }
-
-    .contact-form {
-      max-width: 600px;
-      margin: 30px auto 0;
+    .contact-wrap {
       display: grid;
-      gap: 16px;
-      text-align: left;
-    }
-
-    .input-with-icon {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      padding: 0 14px;
-      border: 1px solid var(--line-soft);
-      border-radius: 8px;
-      background: var(--panel);
-      color: var(--gold);
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .input-with-icon.select-wrap {
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 28px;
       align-items: center;
     }
 
-    .input-with-icon.select-wrap > span {
-      padding-top: 0;
+    .contact-left {
+      background: linear-gradient(180deg, rgba(18,31,49,0.95), rgba(15,24,38,0.95));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 30px 22px;
     }
 
-    .input-with-icon > span {
-      padding-top: 14px;
-      font-size: 18px;
-      flex-shrink: 0;
+    .contact-left h3 {
+      color: var(--gold);
+      font-size: 28px;
+      margin-bottom: 14px;
     }
 
-    .input-with-icon input,
-    .input-with-icon textarea,
-    .input-with-icon select {
-      width: 100%;
-      flex: 1;
-      min-width: 0;
-      border: none;
-      outline: none;
-      background: transparent;
-      color: #ffffff;
-      font: inherit;
-      padding: 14px 0;
+    .contact-left p {
+      color: var(--muted);
+      margin-bottom: 18px;
+      font-size: 15px;
     }
 
-    .input-with-icon select {
-      cursor: pointer;
-      appearance: none;
-      color: #ffffff;
-      padding-right: 20px;
+    .contact-list {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+      margin-top: 20px;
     }
 
-    .select-wrap select {
+    .contact-list li {
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+    }
+
+    .contact-list i {
+      color: var(--gold);
+      width: 20px;
       text-align: center;
-      text-align-last: center;
-      padding: 14px 0;
     }
 
-    .input-with-icon select option {
-      background: var(--panel);
-      color: #ffffff;
+    .contact-form {
+      background: #101b2d;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 26px 20px;
+      display: grid;
+      gap: 16px;
     }
 
-    .input-with-icon textarea {
-      min-height: 140px;
-      resize: vertical;
-      padding-top: 14px;
+    .field {
+      display: grid;
+      gap: 8px;
     }
 
-    .input-with-icon:focus-within {
-      border-color: var(--gold);
-      box-shadow: 0 0 0 2px rgba(245, 199, 107, 0.15);
+    .field label {
+      color: var(--muted);
+      font-size: 13px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
     }
 
-    .contact form button {
-      justify-self: center;
-      cursor: pointer;
-      border: none;
+    .field input,
+    .field textarea,
+    .field select {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.02);
+      color: var(--text);
+      border-radius: 12px;
+      padding: 14px 16px;
       font: inherit;
-      background: linear-gradient(135deg, var(--gold), var(--gold-deep));
-      color: #111a29;
-      padding: 14px 32px;
-      border-radius: 10px;
-      font-weight: 700;
-      letter-spacing: 0.4px;
-      box-shadow: 0 6px 18px var(--shadow);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      outline: none;
+      resize: vertical;
     }
 
-    .contact form button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 24px rgba(245, 199, 107, 0.35);
+    .field input:focus,
+    .field textarea:focus,
+    .field select:focus {
+      border-color: rgba(245, 199, 107, 0.8);
+      box-shadow: 0 0 0 3px rgba(245, 199, 107, 0.12);
+    }
+
+    .field textarea { min-height: 140px; }
+
+    .contact-form .btn {
+      justify-self: start;
+      margin-top: 8px;
     }
 
     .whatsapp-float {
       position: fixed;
       right: 22px;
       bottom: 22px;
-      width: 58px;
-      height: 58px;
-      border-radius: 50%;
+      width: 60px;
+      height: 60px;
       background: linear-gradient(135deg, #25d366, #1ea952);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
       color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       font-size: 28px;
       text-decoration: none;
-      box-shadow: 0 12px 30px rgba(37, 211, 102, 0.35);
-      z-index: 60;
+      box-shadow: 0 18px 34px rgba(37, 211, 102, 0.32);
+      z-index: 70;
       transition: transform 0.2s ease;
     }
 
@@ -518,56 +662,61 @@
     }
 
     footer {
-      border-top: 1px solid var(--line);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 28px 0;
       text-align: center;
-      padding: 25px 0;
-      color: #95a3b8;
+      color: var(--muted-2);
       font-size: 13px;
     }
 
-    @media (max-width: 768px) {
-      nav {
-        justify-content: center;
-        text-align: center;
+    @media (max-width: 900px) {
+      .hero-grid,
+      .about-wrap,
+      .contact-wrap {
+        grid-template-columns: 1fr;
       }
 
+      .hero-visual {
+        max-width: 620px;
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 700px) {
       .nav-links {
         justify-content: center;
       }
-
-      .hero { padding-top: 80px; }
-      section { padding: 60px 0; }
-    }
-
-    @media (max-width: 480px) {
-      .logo {
-        width: 100%;
-        text-align: center;
+      .hero {
+        padding-top: 70px;
       }
-
       .hero-actions {
         flex-direction: column;
+        align-items: stretch;
       }
-
-      .button {
+      .hero-actions .btn {
         width: 100%;
         text-align: center;
       }
-
+      .mini-stats {
+        grid-template-columns: 1fr;
+      }
       .section-title {
-        font-size: 28px;
+        text-align: center;
       }
     }
   </style>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
 </head>
-
 <body>
   <header>
     <div class="container">
       <nav>
-        <div class="logo">TRUE CULTURE</div>
+        <a href="#home" class="brand" aria-label="TRUE CULTURE home">
+          <span class="brand-mark">TC</span>
+          <span class="brand-name">TRUE CULTURE</span>
+        </a>
+
         <div class="nav-links">
           <a href="#home">Home</a>
           <a href="#services">Services</a>
@@ -581,35 +730,44 @@
 
   <main>
     <section class="hero" id="home">
-      <div class="container hero-inner">
-        <div class="eyebrow">Hotel & Hospitality Digital Solutions</div>
-        <h1>Make Your Hotel<br><span class="gold">Stand Out Online.</span></h1>
-        <p>
-          Thoughtful website designs and digital solution concepts that help hospitality businesses present their services,
-          attract more guests, and simplify enquiries.
-        </p>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">Hotel & Hospitality Digital Solutions</div>
+          <h1>Luxury digital experiences for hotels that want to stand out.</h1>
+          <p>
+            We help hospitality brands present their identity beautifully, simplify guest enquiries,
+            and turn interest into bookings through premium digital experiences.
+          </p>
 
-        <div class="hero-actions">
-          <a class="button" href="#contact">Book a Consultation</a>
-          <a class="button secondary" href="#services">Explore Services</a>
+          <div class="hero-actions">
+            <a href="#contact" class="btn btn-primary">Book a Consultation</a>
+            <a href="#services" class="btn btn-secondary">Explore Services</a>
+          </div>
+
+          <div class="mini-stats">
+            <div class="mini-stat">
+              <strong>01</strong>
+              <span>Brand Focus</span>
+            </div>
+            <div class="mini-stat">
+              <strong>02</strong>
+              <span>Guest Ready</span>
+            </div>
+            <div class="mini-stat">
+              <strong>03</strong>
+              <span>Luxury Feel</span>
+            </div>
+          </div>
         </div>
 
-        <div class="stats">
-          <div class="stat">
-            <strong>01</strong>
-            <span>Clear Brand Positioning</span>
+        <div class="hero-visual">
+          <div class="image-card">
+            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1000&q=80" alt="Luxury hotel exterior" />
           </div>
-          <div class="stat">
-            <strong>02</strong>
-            <span>Guest-Focused Experience</span>
-          </div>
-          <div class="stat">
-            <strong>03</strong>
-            <span>Mobile-Ready Design</span>
-          </div>
-          <div class="stat">
-            <strong>04</strong>
-            <span>Faster Enquiries</span>
+          <div class="floating-box">
+            <strong>Luxury Hospitality</strong>
+            <span>Designed to impress guests before arrival.</span>
+            <div class="rating"><i class="fa-solid fa-star"></i> 4.9 Guest Experience</div>
           </div>
         </div>
       </div>
@@ -617,70 +775,91 @@
 
     <section id="services">
       <div class="container">
-        <h2 class="section-title">What We Plan to Build</h2>
-        <p class="intro">
-          Practical digital experiences designed around hotel operations, guest journeys, and business growth.
+        <div class="eyebrow" style="display:block; text-align:center;">What We Build</div>
+        <h2 class="section-title">Digital experiences crafted for hospitality growth</h2>
+        <p class="section-copy">
+          Premium websites and digital concepts designed for hotels, resorts, guest experiences, and modern hospitality brands.
         </p>
 
-        <div class="services">
-          <article class="card">
-            <div class="icon">🌐</div>
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-icon"><i class="fa-solid fa-hotel"></i></div>
             <h3>Hotel Websites</h3>
-            <p>Responsive website designs to showcase rooms, amenities, location, and hotel identity.</p>
+            <p>Elegant, mobile-first hotel websites to showcase rooms, facilities, locations and brand experience.</p>
           </article>
 
-          <article class="card">
-            <div class="icon">🛎️</div>
+          <article class="service-card">
+            <div class="service-icon"><i class="fa-solid fa-calendar-check"></i></div>
             <h3>Booking Solutions</h3>
-            <p>Booking website concepts for room enquiry handling, reservations, and guest interactions.</p>
+            <p>Guest-friendly booking journeys to capture inquiries and help visitors reserve with confidence.</p>
           </article>
 
-          <article class="card">
-            <div class="icon">📱</div>
+          <article class="service-card">
+            <div class="service-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
             <h3>App Concepts</h3>
-            <p>Simple, guest-friendly app ideas for hospitality brands and modern travel experiences.</p>
+            <p>Simple, conversion-focused hospitality mobile experiences for guest engagement and service clarity.</p>
           </article>
 
-          <article class="card">
-            <div class="icon">💬</div>
+          <article class="service-card">
+            <div class="service-icon"><i class="fa-solid fa-comments"></i></div>
             <h3>Enquiry Systems</h3>
-            <p>Clear methods for guests to ask about pricing, availability, and hotel services.</p>
+            <p>Fast, clear enquiry systems to capture leads from prospective guests and business clients.</p>
           </article>
         </div>
       </div>
     </section>
 
     <section class="about" id="about">
-      <div class="container">
-        <div class="eyebrow">Who We Are</div>
-        <h2 class="section-title">About True Culture</h2>
-        <p><strong>Created by Shivam Brijwasi</strong></p>
-        <p>
-          True Culture is a growing portfolio project focused on creating digital experiences for hotels and hospitality
-          businesses. We aim to make online information clearer, services easier to understand, and guest enquiries smoother.
-        </p>
+      <div class="container about-wrap">
+        <div class="about-image">
+          <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1000&q=80" alt="Hotel interior luxury room" />
+        </div>
+
+        <div class="about-content">
+          <div class="eyebrow">Who We Are</div>
+          <h2 class="section-title" style="text-align:left;">About TRUE CULTURE</h2>
+          <p><strong>Created by Shivam Brijwasi</strong></p>
+          <p>
+            True Culture is a hospitality-focused digital concept studio building premium online experiences for hotels and service-led brands.
+            We combine design clarity, guest understanding, and business-focused thinking to create memorable hospitality websites.
+          </p>
+
+          <ul class="check-list">
+            <li><i class="fa-solid fa-circle-check"></i> Premium digital presentation that builds trust with guests</li>
+            <li><i class="fa-solid fa-circle-check"></i> Enquiry and conversion-focused design for hospitality businesses</li>
+            <li><i class="fa-solid fa-circle-check"></i> Modern, mobile-ready experience built for a luxury market</li>
+          </ul>
+        </div>
       </div>
     </section>
 
     <section id="why-us">
       <div class="container">
-        <h2 class="section-title">Why Hotels Choose Us</h2>
-        <p class="intro">We design digital experiences that are modern, polished and built around guest confidence.</p>
+        <div class="eyebrow" style="display:block; text-align:center;">Why Choose Us</div>
+        <h2 class="section-title">Luxury thinking, guest-first experience</h2>
+        <p class="section-copy">
+          We design with hospitality in mind: elegance, structure, clarity, and conversion all working together.
+        </p>
 
-        <div class="why-us">
-          <div class="why-box">
+        <div class="why-grid">
+          <div class="why-card">
             <h3>Guest-first Design</h3>
-            <p>Thoughtful experiences that are easy to browse, easy to trust, and easy to act on.</p>
+            <p>Every screen is designed to feel welcoming, easy to explore, and full of trust.</p>
           </div>
 
-          <div class="why-box">
-            <h3>Built for Hospitality</h3>
-            <p>Every concept is shaped around room discovery, service clarity, and customer contact flow.</p>
+          <div class="why-card">
+            <h3>Brand Positioning</h3>
+            <p>We help hotels convey premium identity, value and personality in a polished format.</p>
           </div>
 
-          <div class="why-box">
-            <h3>Modern & Scalable</h3>
-            <p>Premium presentation today, with flexibility to grow into future features and platforms.</p>
+          <div class="why-card">
+            <h3>Built for Growth</h3>
+            <p>The experience is modern and scalable so future features can be added without redesigning everything.</p>
+          </div>
+
+          <div class="why-card">
+            <h3>Clear Lead Capture</h3>
+            <p>Easy enquiry systems turn interest into meaningful conversations with prospects.</p>
           </div>
         </div>
       </div>
@@ -688,47 +867,48 @@
 
     <section id="plans">
       <div class="container">
-        <h2 class="section-title">Project Options</h2>
-        <p class="intro">Flexible digital planning for hotels that want a more effective online presence.</p>
+        <div class="eyebrow" style="display:block; text-align:center;">Project Options</div>
+        <h2 class="section-title">Flexible packages for hospitality brands</h2>
+        <p class="section-copy">Choose a digital direction that matches your hotel or hospitality concept and growth plans.</p>
 
-        <div class="plans">
+        <div class="pricing-grid">
           <div class="plan">
-            <div class="plan-tag">Starter</div>
+            <div class="plan-badge">Starter</div>
             <h3>Hotel Website</h3>
-            <p>Simple brand-focused website for hotels and property businesses.</p>
+            <p>Premium homepage and service-focused site for boutique properties and hospitality businesses.</p>
             <ul>
-              <li>Homepage & service sections</li>
-              <li>Room or facility showcase</li>
-              <li>Contact and enquiry form</li>
-              <li>Mobile responsive layout</li>
+              <li>Services and brand story</li>
+              <li>Room or property showcase</li>
+              <li>Contact and enquiry flow</li>
+              <li>Responsive luxury layout</li>
             </ul>
-            <a class="button secondary" href="#contact">Get Started</a>
+            <a href="#contact" class="btn btn-secondary">Get Started</a>
           </div>
 
           <div class="plan featured">
-            <div class="plan-tag">Most Popular</div>
+            <div class="plan-badge">Most Popular</div>
             <h3>Booking Experience</h3>
-            <p>Enhanced customer journey for room discovery and inquiry engagement.</p>
+            <p>Guest-focused booking journey with polished presentation and lead capture for enquiries.</p>
             <ul>
-              <li>Booking-focused design flow</li>
-              <li>Inquiry capture form</li>
-              <li>Service and facility highlights</li>
-              <li>Fast guest interaction experience</li>
+              <li>Booking and enquiry flow</li>
+              <li>Premium hotel branding</li>
+              <li>Guest conversion UX</li>
+              <li>Lead-focused contact system</li>
             </ul>
-            <a class="button" href="#contact">Request Proposal</a>
+            <a href="#contact" class="btn btn-primary">Request Proposal</a>
           </div>
 
           <div class="plan">
-            <div class="plan-tag">Custom</div>
+            <div class="plan-badge">Custom</div>
             <h3>App & Portal</h3>
-            <p>Multi-feature hospitality digital experiences for larger business needs.</p>
+            <p>Tailored digital solutions for larger hospitality brands or multi-property business needs.</p>
             <ul>
-              <li>App or portal concept</li>
-              <li>Guest engagement features</li>
-              <li>Brand custom design system</li>
-              <li>Scalable future growth</li>
+              <li>Custom UI/UX design</li>
+              <li>Portal or app concept</li>
+              <li>Advanced engagement features</li>
+              <li>Future-ready architecture</li>
             </ul>
-            <a class="button secondary" href="#contact">Discuss Idea</a>
+            <a href="#contact" class="btn btn-secondary">Discuss Idea</a>
           </div>
         </div>
       </div>
@@ -736,21 +916,24 @@
 
     <section id="process">
       <div class="container">
-        <h2 class="section-title">Our Planned Process</h2>
-        <p class="intro">A simple approach to planning a digital project.</p>
+        <div class="eyebrow" style="display:block; text-align:center;">Our Process</div>
+        <h2 class="section-title">A clean and proven approach to building hospitality websites</h2>
+        <p class="section-copy">We keep the process simple, clear and focused on guest experience and business outcomes.</p>
 
-        <div class="steps">
-          <div class="step">
+        <div class="process-grid">
+          <div class="process-card">
             <h3>01. Understand</h3>
-            <p>Learn about the hotel's goals, audience, and customer expectations.</p>
+            <p>We learn about your hotel, guests, audience, and business goals before design starts.</p>
           </div>
-          <div class="step">
+
+          <div class="process-card">
             <h3>02. Design</h3>
-            <p>Plan a clear, attractive and mobile-friendly experience around guest needs.</p>
+            <p>We shape a premium customer journey that feels elegant, simple and easy to navigate.</p>
           </div>
-          <div class="step">
+
+          <div class="process-card">
             <h3>03. Develop</h3>
-            <p>Build and test the agreed website features with attention to usability.</p>
+            <p>We turn the agreed concept into a polished result that works beautifully across devices.</p>
           </div>
         </div>
       </div>
@@ -758,59 +941,70 @@
 
     <section id="testimonials">
       <div class="container">
-        <h2 class="section-title">What Clients Value</h2>
-        <p class="intro">The kind of experience hotels need to feel more trusted, modern, and guest-ready.</p>
+        <div class="eyebrow" style="display:block; text-align:center;">Client Value</div>
+        <h2 class="section-title">What hospitality businesses value the most</h2>
+        <p class="section-copy">A strong online identity creates better guest trust and smoother customer interaction.</p>
 
-        <div class="testimonials">
+        <div class="testimonial-grid">
           <div class="quote">
-            <p>“A polished digital identity gives guests more confidence before they even arrive.”</p>
+            <p>“A professional digital presence makes guests feel confident before they even arrive.”</p>
             <strong>Hospitality Brand</strong>
-            <span>Modern guest experience</span>
+            <span>Guest trust & perception</span>
           </div>
 
           <div class="quote">
-            <p>“Clear information and easy enquiry flow helps convert interest into actual conversations.”</p>
+            <p>“Clear information and better enquiry flow is the difference between interest and actual conversations.”</p>
             <strong>Hotel Marketing</strong>
-            <span>Online booking interest</span>
+            <span>Lead conversion</span>
           </div>
 
           <div class="quote">
-            <p>“Professional design makes a hotel feel premium, reachable, and trustworthy from the first click.”</p>
+            <p>“Luxury design creates a premium first impression that matches the property experience itself.”</p>
             <strong>Guest Experience</strong>
-            <span>Brand perception</span>
+            <span>Premium positioning</span>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="contact" id="contact">
-      <div class="container">
-        <div class="eyebrow">Start a Conversation</div>
-        <h2 class="section-title">Have a Project in Mind?</h2>
-        <p class="intro">Tell us about your hotel or hospitality project. Our team will connect with you soon.</p>
+    <section id="contact">
+      <div class="container contact-wrap">
+        <div class="contact-left">
+          <div class="eyebrow">Start a Conversation</div>
+          <h3>Discuss your hotel project</h3>
+          <p>Tell us what you are planning and we’ll connect with you to explore the best digital direction for your brand.</p>
+
+          <ul class="contact-list">
+            <li><i class="fa-solid fa-location-dot"></i> Hospitality-focused design and website strategy</li>
+            <li><i class="fa-solid fa-phone"></i> Lead capture and direct guest enquiry support</li>
+            <li><i class="fa-solid fa-arrow-up-right-dots"></i> Premium branding and digital positioning</li>
+          </ul>
+        </div>
 
         <form class="contact-form" action="https://formsubmit.co/shivambr0187@gmail.com" method="POST">
-          <input type="hidden" name="_subject" value="New TRUE CULTURE Website Enquiry">
+          <input type="hidden" name="_subject" value="New TRUE CULTURE Enquiry" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="table" />
 
-          <div class="input-with-icon">
-            <span><i class="fa-regular fa-user"></i></span>
-            <input type="text" name="name" placeholder="Your Full Name" required>
+          <div class="field">
+            <label for="name">Full Name</label>
+            <input id="name" type="text" name="name" placeholder="Your Full Name" required />
           </div>
 
-          <div class="input-with-icon">
-            <span><i class="fa-solid fa-hotel"></i></span>
-            <input type="text" name="hotel" placeholder="Hotel Name" required>
+          <div class="field">
+            <label for="hotel">Hotel Name</label>
+            <input id="hotel" type="text" name="hotel" placeholder="Hotel Name" required />
           </div>
 
-          <div class="input-with-icon">
-            <span><i class="fa-solid fa-mobile-screen-button"></i></span>
-            <input type="tel" name="phone" placeholder="Mobile Number" required>
+          <div class="field">
+            <label for="phone">Mobile Number</label>
+            <input id="phone" type="tel" name="phone" placeholder="Phone Number" required />
           </div>
 
-          <div class="input-with-icon select-wrap">
-            <span><i class="fa-solid fa-clipboard-list"></i></span>
-            <select name="project_type" required>
-              <option value="" disabled selected>Select Project Type</option>
+          <div class="field">
+            <label for="project_type">Project Type</label>
+            <select id="project_type" name="project_type" required>
+              <option value="" disabled selected>Select project type</option>
               <option value="Hotel Website">Hotel Website</option>
               <option value="Online Booking System">Online Booking System</option>
               <option value="Hotel Mobile App">Hotel Mobile App</option>
@@ -819,28 +1013,28 @@
             </select>
           </div>
 
-          <div class="input-with-icon">
-            <span><i class="fa-regular fa-envelope"></i></span>
-            <input type="email" name="email" placeholder="Your Email Address" required>
+          <div class="field">
+            <label for="email">Email Address</label>
+            <input id="email" type="email" name="email" placeholder="Email Address" required />
           </div>
 
-          <div class="input-with-icon">
-            <span><i class="fa-regular fa-message"></i></span>
-            <textarea name="message" placeholder="Tell us about your project" required></textarea>
+          <div class="field">
+            <label for="message">Project Details</label>
+            <textarea id="message" name="message" placeholder="Tell us about your hotel or hospitality project" required></textarea>
           </div>
 
-          <button class="button" type="submit">Send Enquiry</button>
+          <button class="btn btn-primary" type="submit">Send Enquiry</button>
         </form>
       </div>
     </section>
   </main>
 
-  <a class="whatsapp-float" href="https://wa.me/?text=Hi%20TRUE%20CULTURE%2C%20I%20want%20to%20discuss%20my%20hotel%20project." target="_blank" aria-label="Chat on WhatsApp">
+  <a class="whatsapp-float" href="https://wa.me/?text=Hi%20TRUE%20CULTURE%2C%20I%20want%20to%20talk%20about%20my%20hotel%20project." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
     <i class="fa-brands fa-whatsapp"></i>
   </a>
 
   <footer>
-    <div class="container" style="text-align: center;">
+    <div class="container">
       © 2026 TRUE CULTURE. All Rights Reserved. | Crafted with purpose by Shivam Brijwasi
     </div>
   </footer>

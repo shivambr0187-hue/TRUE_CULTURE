@@ -1,24 +1,42 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="TRUE CULTURE — Modern websites and digital solutions for hotels and hospitality businesses.">
+  <meta name="theme-color" content="#080d18">
+  <meta property="og:title" content="TRUE CULTURE | Digital Experiences">
+  <meta property="og:description" content="Modern websites and digital solutions for hotels and hospitality businesses.">
+  <meta property="og:type" content="website">
   <title>TRUE CULTURE | Digital Experiences</title>
 
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #080d18;
+      --bg-soft: #101827;
+      --panel: #111a29;
+      --panel-2: #151f30;
+      --line: #263248;
+      --line-soft: #39465c;
+      --gold: #f5c76b;
+      --gold-deep: #d99a32;
+      --text: #f8fafc;
+      --muted: #c3cedd;
+      --muted-2: #9caabe;
+      --shadow: rgba(245, 199, 107, 0.2);
+    }
 
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
 
     body {
       font-family: Arial, sans-serif;
-      background: #080d18;
-      color: #f8fafc;
+      background: var(--bg);
+      color: var(--text);
       line-height: 1.7;
     }
+
+    a { color: inherit; }
 
     .container {
       width: 90%;
@@ -27,9 +45,13 @@
     }
 
     header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
       padding: 20px 0;
-      border-bottom: 1px solid #263248;
-      background: #080d18;
+      border-bottom: 1px solid var(--line);
+      background: rgba(8, 13, 24, 0.92);
+      backdrop-filter: blur(8px);
     }
 
     nav {
@@ -44,7 +66,7 @@
       font-size: 24px;
       font-weight: 800;
       letter-spacing: 2px;
-      color: #f5c76b;
+      color: var(--gold);
     }
 
     nav a {
@@ -52,18 +74,19 @@
       text-decoration: none;
       margin-left: 18px;
       font-size: 14px;
+      transition: color 0.2s ease;
     }
 
-    nav a:hover { color: #f5c76b; }
+    nav a:hover { color: var(--gold); }
 
     .hero {
       padding: 105px 0 95px;
-      background: radial-gradient(ellipse at top, #203754 0%, #080d18 68%);
+      background: radial-gradient(ellipse at top, #203754 0%, var(--bg) 68%);
       text-align: center;
     }
 
     .eyebrow {
-      color: #f5c76b;
+      color: var(--gold);
       text-transform: uppercase;
       letter-spacing: 3px;
       font-size: 12px;
@@ -76,26 +99,30 @@
       margin: 22px 0;
     }
 
-    .gold { color: #f5c76b; }
+    .gold { color: var(--gold); }
 
     .hero p {
       max-width: 700px;
       margin: 0 auto 30px;
-      color: #c3cedd;
+      color: var(--muted);
       font-size: 18px;
     }
 
     .button {
       display: inline-block;
       padding: 13px 24px;
-      background: #f5c76b;
+      background: var(--gold);
       color: #101522;
       text-decoration: none;
       font-weight: bold;
       border-radius: 6px;
+      transition: background 0.2s ease, transform 0.2s ease;
     }
 
-    .button:hover { background: #ffdc94; }
+    .button:hover {
+      background: #ffdc94;
+      transform: translateY(-1px);
+    }
 
     section { padding: 76px 0; }
 
@@ -106,7 +133,7 @@
     }
 
     .intro {
-      color: #9caabe;
+      color: var(--muted-2);
       text-align: center;
       max-width: 680px;
       margin: 0 auto 38px;
@@ -120,35 +147,59 @@
 
     .card {
       padding: 28px 24px;
-      background: linear-gradient(145deg, #151f30, #0e1625);
+      background: linear-gradient(145deg, var(--panel-2), #0e1625);
       border: 1px solid #29374c;
       border-radius: 12px;
-      transition: transform .2s, border-color .2s;
+      transition: transform 0.2s ease, border-color 0.2s ease;
     }
 
     .card:hover {
       transform: translateY(-5px);
-      border-color: #f5c76b;
+      border-color: var(--gold);
     }
 
     .icon { font-size: 32px; }
 
     .card h3 {
-      color: #f5c76b;
+      color: var(--gold);
       margin: 12px 0 8px;
     }
 
     .card p { color: #bdc8d8; font-size: 15px; }
 
     .about {
-      background: #101827;
+      background: var(--bg-soft);
       text-align: center;
     }
 
     .about p {
       max-width: 760px;
       margin: 15px auto;
-      color: #c3cedd;
+      color: var(--muted);
+    }
+
+    .why-us {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 18px;
+    }
+
+    .why-box {
+      padding: 24px 20px;
+      background: var(--panel);
+      border: 1px solid #253247;
+      border-radius: 10px;
+    }
+
+    .why-box h3 {
+      color: var(--gold);
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+
+    .why-box p {
+      color: #aebbd0;
+      font-size: 14px;
     }
 
     .steps {
@@ -159,142 +210,151 @@
 
     .step {
       padding: 22px;
-      border-left: 3px solid #f5c76b;
+      border-left: 3px solid var(--gold);
       background: #111a29;
+      border-radius: 0 10px 10px 0;
     }
 
     .step h3 { margin-bottom: 8px; }
     .step p { color: #aebbd0; font-size: 14px; }
 
     .contact { text-align: center; }
-    
-.input-with-icon {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 0 14px;
-  border: 1px solid #39465c;
-  border-radius: 8px;
-  background: #111a29;
-  color: #f5c76b;
-}
 
-/* Center the Project Type dropdown */
-.input-with-icon:has(select[name="project_type"]) {
-  align-items: center;
-}
+    .contact-form {
+      max-width: 600px;
+      margin: 30px auto 0;
+      display: grid;
+      gap: 16px;
+      text-align: left;
+    }
 
-.input-with-icon:has(select[name="project_type"]) > span {
-  padding-top: 0;
-}
+    .input-with-icon {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 0 14px;
+      border: 1px solid var(--line-soft);
+      border-radius: 8px;
+      background: var(--panel);
+      color: var(--gold);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
 
-.input-with-icon select[name="project_type"] {
-  text-align: center;
-  text-align-last: center;
-  padding: 14px 0;
-}
-    
-.input-with-icon > span {
-  padding-top: 14px;
-  font-size: 18px;
-  flex-shrink: 0;
-}
+    .select-wrap {
+      align-items: center;
+    }
 
-.input-with-icon input,
-.input-with-icon textarea,
-.input-with-icon select {
-  flex: 1;
-  min-width: 0;
-  width: 100%;
-  border: none;
-  outline: none;
-  background: transparent;
-  color: #ffffff;
-  font: inherit;
-}
+    .select-wrap > span {
+      padding-top: 0;
+    }
 
-.input-with-icon select {
-  cursor: pointer;
-  color: #ffffff;
-}
+    .input-with-icon > span {
+      padding-top: 14px;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
 
-.input-with-icon select option {
-  background: #111a29;
-  color: #ffffff;
-}
+    .input-with-icon input,
+    .input-with-icon textarea,
+    .input-with-icon select {
+      flex: 1;
+      min-width: 0;
+      width: 100%;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: #ffffff;
+      font: inherit;
+      padding: 14px 0;
+    }
 
-.input-with-icon:focus-within {
-  border-color: #f5c76b;
-  box-shadow: 0 0 0 2px rgba(245, 199, 107, 0.15);
-}
+    .input-with-icon select {
+      cursor: pointer;
+      color: #ffffff;
+      appearance: none;
+      background-image: none;
+      padding-right: 20px;
+    }
 
-.contact form {
-  max-width: 600px;
-  margin: 30px auto 0;
-  display: grid;
-  gap: 16px;
-}
+    .select-wrap select {
+      text-align: center;
+      text-align-last: center;
+      padding: 14px 0;
+    }
 
-.contact input,
-.contact textarea {
-  width: 100%;
-  padding: 14px 16px;
-  border: 1px solid #39465c;
-  border-radius: 8px;
-  background: #111a29;
-  color: #ffffff;
-  font: inherit;
-}
+    .input-with-icon select option {
+      background: var(--panel);
+      color: #ffffff;
+    }
 
-.contact textarea {
-  min-height: 140px;
-  resize: vertical;
-}
+    .input-with-icon textarea {
+      min-height: 140px;
+      resize: vertical;
+      padding-top: 14px;
+    }
 
-.contact input:focus,
-.contact textarea:focus {
-  outline: 2px solid #f5c76b;
-  border-color: #f5c76b;
-}
+    .input-with-icon:focus-within {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 2px rgba(245, 199, 107, 0.15);
+    }
 
-.contact form p {
-  margin: 0;
-}
+    .contact form button {
+      justify-self: center;
+      cursor: pointer;
+      border: none;
+      font: inherit;
+      background: linear-gradient(135deg, var(--gold), var(--gold-deep));
+      color: #111a29;
+      padding: 14px 32px;
+      border-radius: 10px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      box-shadow: 0 6px 18px var(--shadow);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
 
+    .contact form button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(245, 199, 107, 0.35);
+    }
 
-.contact form button {
-  justify-self: center;
-  cursor: pointer;
-  border: none;
-  font: inherit;
-  background: linear-gradient(135deg, #f5c76b, #d99a32);
-  color: #111a29;
-  padding: 14px 32px;
-  border-radius: 10px;
-  font-weight: 700;
-  letter-spacing: 0.4px;
-  box-shadow: 0 6px 18px rgba(245, 199, 107, 0.2);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.contact form button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 24px rgba(245, 199, 107, 0.35);
-}
-    
     footer {
-      border-top: 1px solid #263248;
+      border-top: 1px solid var(--line);
       text-align: center;
       padding: 25px 0;
       color: #95a3b8;
       font-size: 13px;
     }
 
-    @media (max-width: 600px) {
-      nav { justify-content: center; }
-      nav a { margin: 0 7px; }
+    @media (max-width: 768px) {
+      nav {
+        justify-content: center;
+        text-align: center;
+      }
+
+      nav a {
+        margin: 0 7px 6px;
+        display: inline-block;
+      }
+
       .hero { padding: 75px 0; }
       section { padding: 55px 0; }
+    }
+
+    @media (max-width: 480px) {
+      .logo {
+        width: 100%;
+        text-align: center;
+      }
+
+      .button {
+        width: 100%;
+        text-align: center;
+      }
+
+      .section-title {
+        font-size: 28px;
+      }
     }
   </style>
 
@@ -323,9 +383,8 @@
         <div class="eyebrow">Hotel & Hospitality Digital Solutions</div>
         <h1>Make Your Hotel<br><span class="gold">Stand Out Online.</span></h1>
         <p>
-          Thoughtful website designs and digital solution concepts
-          that help hospitality businesses present their services
-          and connect with potential guests.
+          Thoughtful website designs and digital solution concepts that help hospitality businesses
+          present their services and connect with potential guests.
         </p>
         <a class="button" href="#services">Explore Our Services →</a>
       </div>
@@ -372,11 +431,33 @@
         <h2 class="section-title">About True Culture</h2>
         <p><strong>Created by Shivam Brijwasi</strong></p>
         <p>
-          True Culture is a growing portfolio project focused on
-          creating digital experiences for hotels and hospitality
-          businesses. We aim to make online information clearer and
-          customer enquiries easier.
+          True Culture is a growing portfolio project focused on creating digital experiences for hotels
+          and hospitality businesses. We aim to make online information clearer and customer enquiries easier.
         </p>
+      </div>
+    </section>
+
+    <section id="why-us">
+      <div class="container">
+        <h2 class="section-title">Why Hotels Choose Us</h2>
+        <p class="intro">Simple, clean and guest-focused digital experiences for the hospitality industry.</p>
+
+        <div class="why-us">
+          <div class="why-box">
+            <h3>Guest-first Design</h3>
+            <p>We build experiences that are easy to navigate, fast to explore and clear for visitors.</p>
+          </div>
+
+          <div class="why-box">
+            <h3>Built for Hospitality</h3>
+            <p>Our concepts are shaped around hotel offerings, room discovery and enquiry flow.</p>
+          </div>
+
+          <div class="why-box">
+            <h3>Modern & Scalable</h3>
+            <p>Projects are designed to look premium today while staying flexible for future growth.</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -406,60 +487,58 @@
       <div class="container">
         <div class="eyebrow">Start a Conversation</div>
         <h2 class="section-title">Have a Project in Mind?</h2>
-       <p class="intro">
-  Tell us about your hotel or hospitality project. Our team will connect with you soon.
-</p>
-       <form action="https://formsubmit.co/shivambr0187@gmail.com" method="POST">
-  <input type="hidden" name="_subject" value="New TRUE CULTURE Website Enquiry">
+        <p class="intro">Tell us about your hotel or hospitality project. Our team will connect with you soon.</p>
 
-  <div class="input-with-icon">
-  <span><i class="fa-regular fa-user"></i></span>
-  <input type="text" name="name" placeholder="Your Full Name" required>
-</div>
+        <form class="contact-form" action="https://formsubmit.co/shivambr0187@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="New TRUE CULTURE Website Enquiry">
 
-<div class="input-with-icon">
-  <span><i class="fa-solid fa-hotel"></i></span>
-  <input type="text" name="hotel" placeholder="Hotel Name" required>
-</div>
+          <div class="input-with-icon">
+            <span><i class="fa-regular fa-user"></i></span>
+            <input type="text" name="name" placeholder="Your Full Name" required>
+          </div>
 
-<div class="input-with-icon">
-  <span><i class="fa-solid fa-mobile-screen-button"></i></span>
-  <input type="tel" name="phone" placeholder="Mobile Number" required>
-</div>
+          <div class="input-with-icon">
+            <span><i class="fa-solid fa-hotel"></i></span>
+            <input type="text" name="hotel" placeholder="Hotel Name" required>
+          </div>
 
-<div class="input-with-icon">
-  <span><i class="fa-solid fa-clipboard-list"></i></span>
-  <select name="project_type" required>
-    <option value="" disabled selected>Select Project Type</option>
-    <option value="Hotel Website">Hotel Website</option>
-    <option value="Online Booking System">Online Booking System</option>
-    <option value="Hotel Mobile App">Hotel Mobile App</option>
-    <option value="Enquiry Management System">Enquiry Management System</option>
-    <option value="Other Services">Other Services</option>
-  </select>
-</div>
+          <div class="input-with-icon">
+            <span><i class="fa-solid fa-mobile-screen-button"></i></span>
+            <input type="tel" name="phone" placeholder="Mobile Number" required>
+          </div>
 
-<div class="input-with-icon">
-  <span><i class="fa-regular fa-envelope"></i></span>
-  <input type="email" name="email" placeholder="Your Email Address" required>
-</div>
+          <div class="input-with-icon select-wrap">
+            <span><i class="fa-solid fa-clipboard-list"></i></span>
+            <select name="project_type" required>
+              <option value="" disabled selected>Select Project Type</option>
+              <option value="Hotel Website">Hotel Website</option>
+              <option value="Online Booking System">Online Booking System</option>
+              <option value="Hotel Mobile App">Hotel Mobile App</option>
+              <option value="Enquiry Management System">Enquiry Management System</option>
+              <option value="Other Services">Other Services</option>
+            </select>
+          </div>
 
-<div class="input-with-icon">
-  <span><i class="fa-regular fa-message"></i></span>
-  <textarea name="message" placeholder="Tell us about your project" required></textarea>
-</div>
+          <div class="input-with-icon">
+            <span><i class="fa-regular fa-envelope"></i></span>
+            <input type="email" name="email" placeholder="Your Email Address" required>
+          </div>
 
-<button class="button" type="submit">Send Enquiry</button>
-</form>
+          <div class="input-with-icon">
+            <span><i class="fa-regular fa-message"></i></span>
+            <textarea name="message" placeholder="Tell us about your project" required></textarea>
+          </div>
+
+          <button class="button" type="submit">Send Enquiry</button>
+        </form>
       </div>
     </section>
   </main>
 
- 
-<footer>
-  <div class="container" style="text-align: center;">
-    © 2026 TRUE CULTURE. All Rights Reserved. | Crafted with purpose by Shivam Brijwasi
-  </div>
-</footer>
+  <footer>
+    <div class="container" style="text-align: center;">
+      © 2026 TRUE CULTURE. All Rights Reserved. | Crafted with purpose by Shivam Brijwasi
+    </div>
+  </footer>
 </body>
 </html>

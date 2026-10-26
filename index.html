@@ -178,13 +178,22 @@
   background: #111a29;
   color: #f5c76b;
 }
+
+/* Center the Project Type dropdown */
+.input-with-icon:has(select[name="project_type"]) {
+  align-items: center;
+}
+
+.input-with-icon select[name="project_type"] {
+  text-align: center;
+  text-align-last: center;
+}
     
 .input-with-icon > span {
   padding-top: 14px;
   font-size: 18px;
   flex-shrink: 0;
 }
-
 
 .input-with-icon input,
 .input-with-icon textarea,
@@ -452,12 +461,11 @@
     </section>
   </main>
 
-  <footer>
-    <div class="container">
-      
-© 2026 True Culture. All Rights Reserved. | Crafted with purpose by Shivam Brijwasi
-
-    </div>
-  </footer>
+ 
+<footer>
+  <div class="container" style="text-align: center;">
+    © 2026 TRUE CULTURE. All Rights Reserved. | Crafted with purpose by Shivam Brijwasi
+  </div>
+</footer>
 </body>
 </html>

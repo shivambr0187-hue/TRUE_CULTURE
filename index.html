@@ -971,7 +971,11 @@
           </ul>
         </div>
 
-        <form id="contactForm" class="contact-form" action="https://formspree.io/f/your-form-id" method="POST" novalidate>
+        <form id="contactForm" class="contact-form" action="https://formsubmit.co/hello.trueculture@gmail.com" method="POST" novalidate>
+          <input type="hidden" name="_subject" value="New enquiry from TRUE CULTURE website" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="table" />
+
           <div class="field">
             <label for="name">Full Name</label>
             <input id="name" name="name" type="text" placeholder="Your name" required />
@@ -1081,14 +1085,13 @@
       setFormStatus('Sending your enquiry...', true);
 
       const formData = new FormData(contactForm);
-      const endpoint = contactForm.action;
 
       try {
-        const response = await fetch(endpoint, {
+        const response = await fetch(contactForm.action, {
           method: 'POST',
           body: formData,
           headers: {
-            'Accept': 'application/json'
+            Accept: 'application/json'
           }
         });
 

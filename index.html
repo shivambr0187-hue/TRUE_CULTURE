@@ -702,6 +702,20 @@
     }
     .field textarea { min-height: 140px; }
 
+    .form-status {
+      display: none;
+      padding: 12px 14px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      border: 1px solid rgba(127, 224, 176, 0.4);
+      background: rgba(127, 224, 176, 0.12);
+      color: #dfffea;
+    }
+    .form-status.show {
+      display: block;
+    }
+
     .whatsapp-float {
       position: fixed;
       right: 22px;
@@ -957,7 +971,7 @@
           </ul>
         </div>
 
-        <form id="contactForm" class="contact-form" novalidate>
+        <form id="contactForm" class="contact-form" action="https://formspree.io/f/your-form-id" method="POST" novalidate>
           <div class="field">
             <label for="name">Full Name</label>
             <input id="name" name="name" type="text" placeholder="Your name" required />
@@ -987,6 +1001,8 @@
             <label for="message">Project Details</label>
             <textarea id="message" name="message" placeholder="Tell us about your vision, property, and goals..." required></textarea>
           </div>
+
+          <div id="formStatus" class="form-status" aria-live="polite"></div>
 
           <button type="submit" class="btn btn-primary">Send Enquiry</button>
         </form>
@@ -1036,41 +1052,60 @@
     });
 
     const contactForm = document.getElementById('contactForm');
+    const formStatus = document.getElementById('formStatus');
     const submitButton = contactForm.querySelector('button[type="submit"]');
 
-    contactForm.addEventListener('submit', function (event) {
+    function setFormStatus(message, isSuccess = true) {
+      formStatus.textContent = message;
+      formStatus.classList.add('show');
+      formStatus.style.borderColor = isSuccess ? 'rgba(127, 224, 176, 0.4)' : 'rgba(255, 107, 107, 0.45)';
+      formStatus.style.background = isSuccess ? 'rgba(127, 224, 176, 0.12)' : 'rgba(255, 107, 107, 0.12)';
+      formStatus.style.color = isSuccess ? '#dfffea' : '#ffe3e3';
+    }
+
+    contactForm.addEventListener('submit', async function (event) {
       event.preventDefault();
 
       const name = document.getElementById('name').value.trim();
       const business = document.getElementById('business').value.trim();
       const email = document.getElementById('email').value.trim();
-      const services = document.getElementById('services').value;
       const message = document.getElementById('message').value.trim();
 
       if (!name || !business || !email || !message) {
-        alert('Please fill in all required fields before sending your enquiry.');
+        setFormStatus('Please fill in all required fields before sending your enquiry.', false);
         return;
       }
 
-      const subject = encodeURIComponent(`New enquiry from ${name} - ${business}`);
-      const body = encodeURIComponent(
-        `Name: ${name}\n` +
-        `Business / Hotel: ${business}\n` +
-        `Email: ${email}\n` +
-        `Interested In: ${services}\n\n` +
-        `Project Details:\n${message}`
-      );
-
-      submitButton.textContent = 'Message Ready';
       submitButton.disabled = true;
+      submitButton.textContent = 'Sending...';
+      setFormStatus('Sending your enquiry...', true);
 
-      window.location.href = `mailto:hello.trueculture@gmail.com?subject=${subject}&body=${body}`;
+      const formData = new FormData(contactForm);
+      const endpoint = contactForm.action;
 
-      setTimeout(() => {
-        contactForm.reset();
-        submitButton.textContent = 'Send Enquiry';
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          contactForm.reset();
+          setFormStatus('Thank you! Your enquiry has been sent successfully.', true);
+          alert('Thank you! Your enquiry has been sent successfully.');
+        } else {
+          throw new Error('Submission failed');
+        }
+      } catch (error) {
+        setFormStatus('There was a problem sending your enquiry. Please try again or email us directly.', false);
+        alert('There was a problem sending your enquiry. Please try again or email us directly.');
+      } finally {
         submitButton.disabled = false;
-      }, 1500);
+        submitButton.textContent = 'Send Enquiry';
+      }
     });
   </script>
 </body>

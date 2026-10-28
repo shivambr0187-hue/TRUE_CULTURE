@@ -22,6 +22,7 @@
       --shadow: rgba(0,0,0,0.24);
       --success: #7fe0b0;
       --danger: #ff6b6b;
+      --glass: rgba(255,255,255,0.04);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -141,9 +142,9 @@
     }
 
     .brand-mark {
-      width: 40px;
-      height: 40px;
-      border-radius: 12px;
+      width: 42px;
+      height: 42px;
+      border-radius: 13px;
       display: grid;
       place-items: center;
       background: linear-gradient(135deg, var(--gold-soft), var(--gold-2));
@@ -151,6 +152,7 @@
       font-size: 14px;
       font-weight: 900;
       box-shadow: 0 16px 26px rgba(240, 201, 123, 0.18);
+      border: 1px solid rgba(255,255,255,0.12);
     }
 
     .brand-name {
@@ -158,6 +160,7 @@
       font-weight: 800;
       color: var(--gold);
       letter-spacing: 2px;
+      text-transform: uppercase;
     }
 
     .nav-links {
@@ -186,6 +189,46 @@
     .nav-links a:hover { color: var(--gold); }
     .nav-links a:hover::after,
     .nav-links a:focus-visible::after { width: 100%; }
+
+    .nav-toggle {
+      display: none;
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.02);
+      color: var(--text);
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+    .nav-toggle:hover {
+      background: rgba(240,201,123,0.04);
+      border-color: rgba(240,201,123,0.3);
+    }
+    .nav-toggle span,
+    .nav-toggle span::before,
+    .nav-toggle span::after {
+      position: relative;
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all 0.2s ease;
+    }
+    .nav-toggle span::before,
+    .nav-toggle span::after {
+      content: "";
+      position: absolute;
+      left: 0;
+    }
+    .nav-toggle span::before { top: -6px; }
+    .nav-toggle span::after { top: 6px; }
+    .nav-toggle.active span { background: transparent; }
+    .nav-toggle.active span::before { transform: rotate(45deg); top: 0; }
+    .nav-toggle.active span::after { transform: rotate(-45deg); top: 0; }
 
     .hero {
       position: relative;
@@ -593,7 +636,7 @@
     }
 
     .cta-strip h3 {
-      font-size: 28px;
+      font-size: clamp(20px, 3vw, 30px);
       margin-bottom: 4px;
     }
 
@@ -735,7 +778,31 @@
 
     @media (max-width: 700px) {
       .nav-links {
-        justify-content: center;
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        padding: 16px 14px 18px;
+        border-radius: 16px;
+        background: rgba(11, 19, 32, 0.9);
+        border: 1px solid rgba(255,255,255,0.08);
+        box-shadow: 0 20px 28px rgba(0,0,0,0.18);
+        margin-top: 8px;
+      }
+      .nav-links.open {
+        display: flex;
+      }
+      .nav-toggle {
+        display: inline-flex;
+      }
+      .nav-links a {
+        padding: 8px 10px;
+        border-radius: 10px;
+        color: var(--muted);
+      }
+      .nav-links a:hover {
+        background: rgba(240,201,123,0.05);
       }
       .hero-actions {
         flex-direction: column;
@@ -751,6 +818,10 @@
       .gallery-item img {
         height: 260px;
       }
+      .cta-strip {
+        flex-direction: column;
+        align-items: flex-start;
+      }
     }
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
@@ -764,7 +835,11 @@
           <span class="brand-name">TRUE CULTURE</span>
         </a>
 
-        <div class="nav-links">
+        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+          <span></span>
+        </button>
+
+        <div class="nav-links" id="mainNav">
           <a href="#home">Home</a>
           <a href="#services">Services</a>
           <a href="#gallery">Gallery</a>
@@ -1113,6 +1188,26 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.getElementById('mainNav');
+
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+      navToggle.classList.toggle('active');
+      const expanded = navToggle.classList.contains('active');
+      navToggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+    });
+
+    navLinks.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 700) {
+          navLinks.classList.remove('open');
+          navToggle.classList.remove('active');
+          navToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
 
     const contactForm = document.getElementById('contactForm');
     contactForm.addEventListener('submit', function (event) {

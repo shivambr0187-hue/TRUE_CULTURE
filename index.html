@@ -225,34 +225,45 @@
     .header-controls {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       flex-wrap: wrap;
     }
 
     .selector-box {
       display: flex;
       align-items: center;
-      gap: 8px;
-      background: rgba(255,255,255,0.03);
+      gap: 10px;
+      min-height: 42px;
+      padding: 7px 13px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.02);
       border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 10px;
-      padding: 6px 10px;
+      box-shadow: 0 10px 22px rgba(0,0,0,0.1);
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+    .selector-box:hover {
+      border-color: rgba(240,201,123,0.35);
+      transform: translateY(-1px);
     }
     .selector-box label {
       font-size: 10px;
-      letter-spacing: 1.2px;
+      letter-spacing: 1.8px;
       text-transform: uppercase;
       color: var(--muted-2);
+      font-weight: 700;
     }
     .selector-box select {
+      appearance: none;
+      -webkit-appearance: none;
       background: transparent;
       border: none;
+      outline: none;
       color: var(--text);
       font: inherit;
-      outline: none;
+      font-weight: 700;
       cursor: pointer;
-      appearance: none;
-      padding-right: 12px;
+      padding-right: 10px;
+      min-width: 60px;
     }
 
     .nav-toggle {
@@ -670,7 +681,9 @@
       border-radius: 20px;
       padding: 24px 20px;
       box-shadow: 0 18px 28px rgba(0,0,0,0.12);
+      transition: transform 0.2s ease, border-color 0.2s ease;
     }
+    .portal-card:hover { transform: translateY(-2px); }
     .portal-card.admin { border-color: rgba(240, 201, 123, 0.4); }
     .portal-card.hotel { border-color: rgba(127, 224, 176, 0.24); }
     .portal-card.guest { border-color: rgba(255,255,255,0.12); }
@@ -731,6 +744,107 @@
       padding: 12px 18px;
       margin-top: 4px;
       text-align: center;
+    }
+
+    .role-dashboard {
+      display: none;
+      margin-top: 20px;
+      background: linear-gradient(180deg, rgba(17,30,46,0.9), rgba(12,21,33,0.96));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 22px;
+      padding: 24px;
+      box-shadow: 0 20px 28px rgba(0,0,0,0.15);
+    }
+    .role-dashboard.active {
+      display: block;
+    }
+    .dashboard-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+    .dashboard-topbar h3 {
+      font-size: 30px;
+      color: var(--gold);
+    }
+    .dashboard-topbar button {
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.02);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 10px 16px;
+      cursor: pointer;
+      font: inherit;
+    }
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(180px, 1fr));
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+    .dash-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 18px 16px;
+    }
+    .dash-card span {
+      display: block;
+      color: var(--muted-2);
+      font-size: 12px;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .dash-card strong {
+      color: var(--text);
+      font-size: 28px;
+      line-height: 1;
+    }
+    .role-panel {
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 18px;
+    }
+    .panel-box {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 18px;
+    }
+    .panel-box h4 {
+      margin-bottom: 10px;
+      color: var(--gold);
+      font-size: 18px;
+    }
+    .list-items {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+    .list-items li {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 12px 13px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .status-chip {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.1px;
+      text-transform: uppercase;
+      background: rgba(127,224,176,0.12);
+      color: var(--success);
+      border: 1px solid rgba(127,224,176,0.2);
+      margin-top: 8px;
     }
 
     .faq-wrap {
@@ -935,10 +1049,12 @@
       .about-wrap,
       .contact-wrap,
       .gallery-grid,
-      .portal-grid {
+      .portal-grid,
+      .role-panel {
         grid-template-columns: 1fr;
       }
       .hero-visual { max-width: 620px; margin: 0 auto; }
+      .dashboard-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 700px) {
@@ -1002,13 +1118,13 @@
           </button>
 
           <div class="nav-links" id="mainNav">
-            <a href="#home" data-i18n="nav.home">Home</a>
-            <a href="#services" data-i18n="nav.services">Services</a>
-            <a href="#gallery" data-i18n="nav.gallery">Gallery</a>
-            <a href="#about" data-i18n="nav.about">About</a>
-            <a href="#process" data-i18n="nav.process">Process</a>
-            <a href="#pricing" data-i18n="nav.pricing">Pricing</a>
-            <a href="#contact" data-i18n="nav.contact">Contact</a>
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#about">About</a>
+            <a href="#process">Process</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#contact">Contact</a>
           </div>
 
           <div class="header-controls">
@@ -1039,21 +1155,21 @@
     <section class="hero" id="home">
       <div class="container hero-grid">
         <div class="hero-copy">
-          <div class="eyebrow" data-i18n="hero.eyebrow">Luxury hospitality digital studio</div>
-          <h1 data-i18n="hero.title">Premium websites for hotels that want more bookings.</h1>
-          <p data-i18n="hero.text">
+          <div class="eyebrow">Luxury hospitality digital studio</div>
+          <h1>Premium websites for hotels that want more bookings.</h1>
+          <p>
             We build elegant, conversion-focused online experiences for hotels and hospitality brands that want to look premium and feel trustworthy from the first visit.
           </p>
 
           <div class="hero-actions">
-            <a href="#contact" class="btn btn-primary" data-i18n="hero.primaryBtn">Book a Consultation</a>
-            <a href="#services" class="btn btn-secondary" data-i18n="hero.secondaryBtn">Explore Services</a>
+            <a href="#contact" class="btn btn-primary">Book a Consultation</a>
+            <a href="#services" class="btn btn-secondary">Explore Services</a>
           </div>
 
           <div class="stats">
-            <div class="stat"><strong>01</strong><span data-i18n="hero.stat1">Brand Story</span></div>
-            <div class="stat"><strong>02</strong><span data-i18n="hero.stat2">Lead Flow</span></div>
-            <div class="stat"><strong>03</strong><span data-i18n="hero.stat3">Luxury Feel</span></div>
+            <div class="stat"><strong>01</strong><span>Brand Story</span></div>
+            <div class="stat"><strong>02</strong><span>Lead Flow</span></div>
+            <div class="stat"><strong>03</strong><span>Luxury Feel</span></div>
           </div>
         </div>
 
@@ -1062,8 +1178,8 @@
             <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80" alt="Luxury hotel exterior" />
           </div>
           <div class="floating-box">
-            <strong data-i18n="hero.boxTitle">Luxury Hospitality</strong>
-            <span data-i18n="hero.boxText">Designed to impress guests before arrival.</span>
+            <strong>Luxury Hospitality</strong>
+            <span>Designed to impress guests before arrival.</span>
           </div>
         </div>
       </div>
@@ -1071,33 +1187,33 @@
 
     <section id="services">
       <div class="container">
-        <div class="eyebrow" style="display:block; text-align:center;" data-i18n="services.tag">What we build</div>
-        <h2 class="section-title" style="text-align:center;" data-i18n="services.title">Digital experiences that convert hospitality interest into enquiries</h2>
-        <p class="section-copy" data-i18n="services.text">Premium websites and digital solutions tailored to hotels, resorts, and guest-first hospitality businesses.</p>
+        <div class="eyebrow" style="display:block; text-align:center;">What we build</div>
+        <h2 class="section-title" style="text-align:center;">Digital experiences that convert hospitality interest into enquiries</h2>
+        <p class="section-copy">Premium websites and digital solutions tailored to hotels, resorts, and guest-first hospitality businesses.</p>
 
         <div class="services-grid">
           <article class="service-card">
             <div class="service-icon"><i class="fa-solid fa-hotel"></i></div>
-            <h3 data-i18n="services.card1title">Hotel Websites</h3>
-            <p data-i18n="services.card1text">Elegant landing pages that visually present your property, rooms, and overall guest experience.</p>
+            <h3>Hotel Websites</h3>
+            <p>Elegant landing pages that visually present your property, rooms, and overall guest experience.</p>
           </article>
 
           <article class="service-card">
             <div class="service-icon"><i class="fa-solid fa-calendar-check"></i></div>
-            <h3 data-i18n="services.card2title">Booking Flow</h3>
-            <p data-i18n="services.card2text">Clear, guest-friendly enquiry and reservation experience that helps turn interest into action.</p>
+            <h3>Booking Flow</h3>
+            <p>Clear, guest-friendly enquiry and reservation experience that helps turn interest into action.</p>
           </article>
 
           <article class="service-card">
             <div class="service-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
-            <h3 data-i18n="services.card3title">App Concepts</h3>
-            <p data-i18n="services.card3text">Responsive guest journeys and app-style experiences built for modern hospitality brands.</p>
+            <h3>App Concepts</h3>
+            <p>Responsive guest journeys and app-style experiences built for modern hospitality brands.</p>
           </article>
 
           <article class="service-card">
             <div class="service-icon"><i class="fa-solid fa-comments"></i></div>
-            <h3 data-i18n="services.card4title">Lead Capture</h3>
-            <p data-i18n="services.card4text">Simple, effective enquiry systems designed to gather genuine interest and support sales discussions.</p>
+            <h3>Lead Capture</h3>
+            <p>Simple, effective enquiry systems designed to gather genuine interest and support sales discussions.</p>
           </article>
         </div>
       </div>
@@ -1185,7 +1301,7 @@
           <div class="plan">
             <div class="plan-badge">Starter</div>
             <h3>Launch</h3>
-            <span class="price" data-currency-price="25000" data-currency-symbol="₹">₹25,000 <small>one-time</small></span>
+            <span class="price" data-currency-price="25000">₹25,000 <small>one-time</small></span>
             <p>Perfect for small hospitality brands starting with a strong first impression.</p>
             <ul>
               <li>Single-page premium layout</li>
@@ -1199,7 +1315,7 @@
           <div class="plan featured">
             <div class="plan-badge">Most Popular</div>
             <h3>Signature</h3>
-            <span class="price" data-currency-price="60000" data-currency-symbol="₹">₹60,000 <small>one-time</small></span>
+            <span class="price" data-currency-price="60000">₹60,000 <small>one-time</small></span>
             <p>For hotels and resorts that need a stronger guest journey and clearer conversion flow.</p>
             <ul>
               <li>Multi-section luxury design</li>
@@ -1213,7 +1329,7 @@
           <div class="plan">
             <div class="plan-badge">Growth</div>
             <h3>Brand Presence</h3>
-            <span class="price" data-currency-price="120000" data-currency-symbol="₹">₹1,20,000 <small>custom</small></span>
+            <span class="price" data-currency-price="120000">₹1,20,000 <small>custom</small></span>
             <p>For businesses that want a more strategic website and ongoing digital support.</p>
             <ul>
               <li>Custom hospitality branding</li>
@@ -1238,14 +1354,14 @@
             <div class="portal-badge">Admin Login</div>
             <h3>Admin</h3>
             <p>Manage clients, leads, projects, and approvals from one dashboard.</p>
-            <form class="mini-login">
+            <form class="mini-login" data-role="admin">
               <div class="field">
                 <label for="adminEmail">Email</label>
-                <input id="adminEmail" type="email" placeholder="admin@trueculture.com" />
+                <input id="adminEmail" type="email" placeholder="admin@trueculture.com" required />
               </div>
               <div class="field">
                 <label for="adminPassword">Password</label>
-                <input id="adminPassword" type="password" placeholder="••••••••" />
+                <input id="adminPassword" type="password" placeholder="••••••••" required />
               </div>
               <button type="submit" class="btn btn-primary">Login</button>
             </form>
@@ -1255,14 +1371,14 @@
             <div class="portal-badge">Hotels Login</div>
             <h3>Hotels</h3>
             <p>Track property details, enquiry performance, and digital marketing progress.</p>
-            <form class="mini-login">
+            <form class="mini-login" data-role="hotel">
               <div class="field">
                 <label for="hotelEmail">Hotel Email</label>
-                <input id="hotelEmail" type="email" placeholder="hotel@brand.com" />
+                <input id="hotelEmail" type="email" placeholder="hotel@brand.com" required />
               </div>
               <div class="field">
                 <label for="hotelPassword">Password</label>
-                <input id="hotelPassword" type="password" placeholder="••••••••" />
+                <input id="hotelPassword" type="password" placeholder="••••••••" required />
               </div>
               <button type="submit" class="btn btn-primary">Login</button>
             </form>
@@ -1272,17 +1388,110 @@
             <div class="portal-badge">Guest Login</div>
             <h3>Guest</h3>
             <p>Explore hotel details, discover experiences, and request property enquiries.</p>
-            <form class="mini-login">
+            <form class="mini-login" data-role="guest">
               <div class="field">
                 <label for="guestEmail">Email</label>
-                <input id="guestEmail" type="email" placeholder="guest@example.com" />
+                <input id="guestEmail" type="email" placeholder="guest@example.com" required />
               </div>
               <div class="field">
                 <label for="guestPassword">Password</label>
-                <input id="guestPassword" type="password" placeholder="••••••••" />
+                <input id="guestPassword" type="password" placeholder="••••••••" required />
               </div>
               <button type="submit" class="btn btn-primary">Login</button>
             </form>
+          </div>
+        </div>
+
+        <div id="adminDashboard" class="role-dashboard" data-dashboard="admin">
+          <div class="dashboard-topbar">
+            <h3>Admin Dashboard</h3>
+            <button type="button" class="logout-btn">Logout</button>
+          </div>
+          <div class="dashboard-grid">
+            <div class="dash-card"><span>Total Leads</span><strong>284</strong></div>
+            <div class="dash-card"><span>Active Hotels</span><strong>42</strong></div>
+            <div class="dash-card"><span>Monthly Revenue</span><strong>₹9.6L</strong></div>
+          </div>
+          <div class="role-panel">
+            <div class="panel-box">
+              <h4>Client Pipeline</h4>
+              <ul class="list-items">
+                <li>Royal Horizon Resorts — Proposal sent</li>
+                <li>Azure Crest Hotel — Discovery call booked</li>
+                <li>Velvet Vista Retreat — Contract review</li>
+              </ul>
+            </div>
+            <div class="panel-box">
+              <h4>Quick Status</h4>
+              <span class="status-chip">Live</span>
+              <ul class="list-items" style="margin-top: 12px;">
+                <li>11 New enquiries</li>
+                <li>6 proposals opened</li>
+                <li>3 urgent tasks</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div id="hotelDashboard" class="role-dashboard" data-dashboard="hotel">
+          <div class="dashboard-topbar">
+            <h3>Hotel Dashboard</h3>
+            <button type="button" class="logout-btn">Logout</button>
+          </div>
+          <div class="dashboard-grid">
+            <div class="dash-card"><span>Property Enquiries</span><strong>34</strong></div>
+            <div class="dash-card"><span>Bookings</span><strong>18</strong></div>
+            <div class="dash-card"><span>Response Rate</span><strong>96%</strong></div>
+          </div>
+          <div class="role-panel">
+            <div class="panel-box">
+              <h4>Reservation Snapshot</h4>
+              <ul class="list-items">
+                <li>Deluxe rooms — 12 available</li>
+                <li>Couple package — 7 enquiries</li>
+                <li>Wedding weekend — 4 quotes sent</li>
+              </ul>
+            </div>
+            <div class="panel-box">
+              <h4>Marketing Health</h4>
+              <span class="status-chip">Strong</span>
+              <ul class="list-items" style="margin-top: 12px;">
+                <li>Lead quality improved</li>
+                <li>2 new campaigns set</li>
+                <li>Boost in mobile visits</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div id="guestDashboard" class="role-dashboard" data-dashboard="guest">
+          <div class="dashboard-topbar">
+            <h3>Guest Dashboard</h3>
+            <button type="button" class="logout-btn">Logout</button>
+          </div>
+          <div class="dashboard-grid">
+            <div class="dash-card"><span>Saved Stays</span><strong>5</strong></div>
+            <div class="dash-card"><span>Wishlist</span><strong>9</strong></div>
+            <div class="dash-card"><span>Upcoming Bookings</span><strong>2</strong></div>
+          </div>
+          <div class="role-panel">
+            <div class="panel-box">
+              <h4>Recommended Experiences</h4>
+              <ul class="list-items">
+                <li>Private pool villa package</li>
+                <li>Sunrise spa retreat</li>
+                <li>Weekend dining escape</li>
+              </ul>
+            </div>
+            <div class="panel-box">
+              <h4>Guest Account</h4>
+              <span class="status-chip">Verified</span>
+              <ul class="list-items" style="margin-top: 12px;">
+                <li>Profile complete</li>
+                <li>Preferences saved</li>
+                <li>Wishlist updated</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -1477,99 +1686,6 @@
       AED: { symbol: 'د.إ', rate: 0.044 }
     };
 
-    const translations = {
-      en: {
-        'nav.home': 'Home',
-        'nav.services': 'Services',
-        'nav.gallery': 'Gallery',
-        'nav.about': 'About',
-        'nav.process': 'Process',
-        'nav.pricing': 'Pricing',
-        'nav.contact': 'Contact',
-        'hero.eyebrow': 'Luxury hospitality digital studio',
-        'hero.title': 'Premium websites for hotels that want more bookings.',
-        'hero.text': 'We build elegant, conversion-focused online experiences for hotels and hospitality brands that want to look premium and feel trustworthy from the first visit.',
-        'hero.primaryBtn': 'Book a Consultation',
-        'hero.secondaryBtn': 'Explore Services',
-        'hero.stat1': 'Brand Story',
-        'hero.stat2': 'Lead Flow',
-        'hero.stat3': 'Luxury Feel',
-        'hero.boxTitle': 'Luxury Hospitality',
-        'hero.boxText': 'Designed to impress guests before arrival.',
-        'services.tag': 'What we build',
-        'services.title': 'Digital experiences that convert hospitality interest into enquiries',
-        'services.text': 'Premium websites and digital solutions tailored to hotels, resorts, and guest-first hospitality businesses.',
-        'services.card1title': 'Hotel Websites',
-        'services.card1text': 'Elegant landing pages that visually present your property, rooms, and overall guest experience.',
-        'services.card2title': 'Booking Flow',
-        'services.card2text': 'Clear, guest-friendly enquiry and reservation experience that helps turn interest into action.',
-        'services.card3title': 'App Concepts',
-        'services.card3text': 'Responsive guest journeys and app-style experiences built for modern hospitality brands.',
-        'services.card4title': 'Lead Capture',
-        'services.card4text': 'Simple, effective enquiry systems designed to gather genuine interest and support sales discussions.'
-      },
-      hi: {
-        'nav.home': 'होम',
-        'nav.services': 'सेवाएं',
-        'nav.gallery': 'गैलरी',
-        'nav.about': 'हमारे बारे में',
-        'nav.process': 'प्रक्रिया',
-        'nav.pricing': 'प्राइसिंग',
-        'nav.contact': 'संपर्क',
-        'hero.eyebrow': 'लग्ज़री आतिथ्य डिजिटल स्टूडियो',
-        'hero.title': 'होटल्स के लिए प्रीमियम वेबसाइटें जो अधिक बुकिंग लाती हैं।',
-        'hero.text': 'हम होटल और आतिथ्य ब्रांड्स के लिए सुंदर, कन्वर्ज़न-फोकस्ड डिजिटल अनुभव बनाते हैं जो पहली नज़र में प्रीमियम और भरोसेमंद लगें।',
-        'hero.primaryBtn': 'कंसल्टेशन बुक करें',
-        'hero.secondaryBtn': 'सेवाएं देखें',
-        'hero.stat1': 'ब्रांड स्टोरी',
-        'hero.stat2': 'लीड फ्लो',
-        'hero.stat3': 'लग्ज़री फील',
-        'hero.boxTitle': 'लग्ज़री आतिथ्य',
-        'hero.boxText': 'मेहमानों को आने से पहले ही प्रभावित करने के लिए डिज़ाइन किया गया।',
-        'services.tag': 'हम क्या बनाते हैं',
-        'services.title': 'ऐसे डिजिटल अनुभव जो आतिथ्य रुचि को पूछताछ में बदलें',
-        'services.text': 'होटल, रिसॉर्ट और गेस्ट-फर्स्ट आतिथ्य व्यवसायों के लिए प्रीमियम वेबसाइट और डिजिटल समाधान।',
-        'services.card1title': 'होटल वेबसाइट्स',
-        'services.card1text': 'ऐसी सुंदर लैंडिंग पेज जो आपके प्रॉपर्टी, रूम और समग्र अनुभव को आकर्षक तरीके से प्रस्तुत करती हैं।',
-        'services.card2title': 'बुकिंग फ्लो',
-        'services.card2text': 'स्पष्ट, मेहमानों के लिए उपयोगी पूछताछ और आरक्षण अनुभव जो रुचि को कार्रवाई में बदलता है।',
-        'services.card3title': 'ऐप कॉन्सेप्ट',
-        'services.card3text': 'मोबाइल और रिस्पॉन्सिव गेस्ट जर्नी और ऐप-स्टाइल अनुभव।',
-        'services.card4title': 'लीड कैप्चर',
-        'services.card4text': 'सरल और प्रभावी पूछताछ सिस्टम जो सच्ची रुचि को सही टीम तक पहुँचाते हैं।'
-      },
-      ar: {
-        'nav.home': 'الرئيسية',
-        'nav.services': 'الخدمات',
-        'nav.gallery': 'المعرض',
-        'nav.about': 'من نحن',
-        'nav.process': 'العملية',
-        'nav.pricing': 'التسعير',
-        'nav.contact': 'اتصل بنا',
-        'hero.eyebrow': 'استوديو رقمي فاخر للسياحة والضيافة',
-        'hero.title': 'مواقع إلكترونية فاخرة للفنادق التي ترغب في زيادة الحجوزات.',
-        'hero.text': 'نصمم تجارب رقمية أنيقة وتركّز على التحويل للمنازل الفندقية والعلامات الضيافية التي تريد أن تبدو فاخرة وموثوقة من أول زيارة.',
-        'hero.primaryBtn': 'احجز استشارة',
-        'hero.secondaryBtn': 'استكشف الخدمات',
-        'hero.stat1': 'قصة العلامة',
-        'hero.stat2': 'تدفق العملاء',
-        'hero.stat3': 'إحساس فاخر',
-        'hero.boxTitle': 'الضيافة الفاخرة',
-        'hero.boxText': 'مصمم لإبهار الضيوف قبل الوصول.',
-        'services.tag': 'ماذا نصنع',
-        'services.title': 'تجارب رقمية تحول اهتمام الضيافة إلى استفسارات',
-        'services.text': 'مواقع إلكترونية ومتخصصات مخصصة للفنادق والمنتجعات والأعمال الضيافية أولاً.',
-        'services.card1title': 'مواقع الفنادق',
-        'services.card1text': 'صفحات هبوط أنيقة تقدم الممتلكات والغرف وتجربة الضيف بأسلوب فخم.',
-        'services.card2title': 'تدفق الحجز',
-        'services.card2text': 'تجربة استفسار وحجز واضحة ومريحة تساعد على تحويل الاهتمام إلى إجراء.',
-        'services.card3title': 'مفاهيم التطبيقات',
-        'services.card3text': 'رحلات ضيف متجاوبة وتجارب بتصميم تطبيق حديث.',
-        'services.card4title': 'التقاط العملاء',
-        'services.card4text': 'نظم استفسار فعالة وجذابة تجمع الاهتمام الحقيقي وتوصل إلى فريق المبيعات.'
-      }
-    };
-
     function formatCurrency(value, currency) {
       const cfg = currencyConfig[currency] || currencyConfig.INR;
       const number = Number(value) * cfg.rate;
@@ -1591,22 +1707,17 @@
       document.querySelectorAll('[data-currency-price]').forEach((el) => {
         const value = Number(el.getAttribute('data-currency-price'));
         const formatted = formatCurrency(value, currency);
-        el.innerHTML = `${formatted} <small>one-time</small>`;
-      });
-    }
 
-    function updateLanguage() {
-      const lang = document.getElementById('languageSelector').value;
-      const map = translations[lang] || translations.en;
-      document.querySelectorAll('[data-i18n]').forEach((el) => {
-        const key = el.getAttribute('data-i18n');
-        if (map[key]) {
-          el.textContent = map[key];
+        if (currency === 'INR') {
+          el.innerHTML = `${formatted} <small>one-time</small>`;
+        } else if (currency === 'USD') {
+          el.innerHTML = `${formatted} <small>one-time</small>`;
+        } else {
+          el.innerHTML = `${formatted} <small>one-time</small>`;
         }
       });
     }
 
-    document.getElementById('languageSelector').addEventListener('change', updateLanguage);
     document.getElementById('currencySelector').addEventListener('change', updateCurrency);
 
     const contactForm = document.getElementById('contactForm');
@@ -1620,7 +1731,34 @@
       });
     }
 
-    updateLanguage();
+    const roleForms = document.querySelectorAll('.mini-login');
+    const dashboards = document.querySelectorAll('.role-dashboard');
+    const allPortalCards = document.querySelectorAll('.portal-card');
+
+    roleForms.forEach((form) => {
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const role = this.getAttribute('data-role');
+        dashboards.forEach((dash) => {
+          dash.classList.toggle('active', dash.dataset.dashboard === role);
+        });
+
+        allPortalCards.forEach((card) => card.style.display = 'none');
+        const activeDash = document.getElementById(role + 'Dashboard');
+        if (activeDash) {
+          activeDash.classList.add('active');
+        }
+      });
+    });
+
+    document.querySelectorAll('.logout-btn').forEach((button) => {
+      button.addEventListener('click', () => {
+        dashboards.forEach((dash) => dash.classList.remove('active'));
+        allPortalCards.forEach((card) => card.style.display = 'block');
+      });
+    });
+
     updateCurrency();
   </script>
 </body>

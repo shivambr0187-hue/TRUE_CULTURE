@@ -189,6 +189,13 @@
       text-shadow: 0 8px 18px rgba(240, 201, 123, 0.14);
     }
 
+    .nav-wrap {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
     .nav-links {
       display: flex;
       align-items: center;
@@ -214,6 +221,39 @@
     .nav-links a:hover { color: var(--gold); }
     .nav-links a:hover::after,
     .nav-links a:focus-visible::after { width: 100%; }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .selector-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: 6px 10px;
+    }
+    .selector-box label {
+      font-size: 10px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--muted-2);
+    }
+    .selector-box select {
+      background: transparent;
+      border: none;
+      color: var(--text);
+      font: inherit;
+      outline: none;
+      cursor: pointer;
+      appearance: none;
+      padding-right: 12px;
+    }
 
     .nav-toggle {
       display: none;
@@ -408,27 +448,6 @@
       font-size: 15px;
     }
 
-    .why-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-    }
-    .why-card {
-      background: #101c2d;
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 16px;
-      padding: 24px 18px;
-    }
-    .why-card h3 {
-      color: var(--gold);
-      font-size: 20px;
-      margin-bottom: 8px;
-    }
-    .why-card p {
-      color: var(--muted-2);
-      font-size: 14px;
-    }
-
     .about-wrap {
       display: grid;
       grid-template-columns: 0.9fr 1.1fr;
@@ -498,6 +517,97 @@
       background: rgba(11, 19, 32, 0.6);
     }
 
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .why-card {
+      background: #101c2d;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 24px 18px;
+    }
+    .why-card h3 {
+      color: var(--gold);
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+    .why-card p {
+      color: var(--muted-2);
+      font-size: 14px;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 22px;
+    }
+    .plan {
+      background: linear-gradient(180deg, #101b2b, #0c1522);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 26px 22px;
+      box-shadow: 0 16px 22px rgba(0,0,0,0.14);
+    }
+    .plan.featured {
+      border-color: rgba(240, 201, 123, 0.7);
+      box-shadow: 0 0 0 1px rgba(240, 201, 123, 0.2), 0 26px 34px rgba(240, 201, 123, 0.08);
+    }
+    .plan-badge {
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(240, 201, 123, 0.1);
+      border: 1px solid rgba(240,201,123,0.22);
+      color: var(--gold);
+      font-size: 10px;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .plan h3 {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+    .plan .price {
+      display: block;
+      font-size: clamp(28px, 3vw, 36px);
+      color: var(--gold);
+      font-weight: 800;
+      line-height: 1.1;
+      margin: 10px 0 14px;
+    }
+    .plan .price small {
+      font-size: 14px;
+      color: var(--muted-2);
+      font-weight: 600;
+    }
+    .plan p {
+      color: var(--muted-2);
+      margin-bottom: 18px;
+    }
+    .plan ul {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+    .plan li {
+      position: relative;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .plan li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--success);
+      font-weight: 700;
+    }
+
     .process-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -546,74 +656,81 @@
       font-size: 13px;
     }
 
-    .pricing-grid {
+    .portal-section {
+      background: rgba(255,255,255,0.01);
+    }
+    .portal-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(3, minmax(220px, 1fr));
       gap: 22px;
     }
-    .plan {
-      background: linear-gradient(180deg, #101b2b, #0c1522);
+    .portal-card {
+      background: linear-gradient(180deg, rgba(17,30,46,0.96), rgba(14,22,33,0.96));
       border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 18px;
-      padding: 26px 22px;
-      box-shadow: 0 16px 22px rgba(0,0,0,0.14);
+      border-radius: 20px;
+      padding: 24px 20px;
+      box-shadow: 0 18px 28px rgba(0,0,0,0.12);
     }
-    .plan.featured {
-      border-color: rgba(240, 201, 123, 0.7);
-      box-shadow: 0 0 0 1px rgba(240, 201, 123, 0.2), 0 26px 34px rgba(240, 201, 123, 0.08);
-    }
-    .plan-badge {
+    .portal-card.admin { border-color: rgba(240, 201, 123, 0.4); }
+    .portal-card.hotel { border-color: rgba(127, 224, 176, 0.24); }
+    .portal-card.guest { border-color: rgba(255,255,255,0.12); }
+    .portal-badge {
       display: inline-block;
-      padding: 5px 10px;
+      padding: 6px 10px;
       border-radius: 999px;
-      background: rgba(240, 201, 123, 0.1);
-      border: 1px solid rgba(240,201,123,0.22);
-      color: var(--gold);
       font-size: 10px;
-      letter-spacing: 1.3px;
+      letter-spacing: 1.2px;
       text-transform: uppercase;
       font-weight: 700;
-      margin-bottom: 12px;
+      border: 1px solid currentColor;
+      margin-bottom: 14px;
     }
-    .plan h3 {
-      font-size: 28px;
+    .portal-card.admin .portal-badge { color: var(--gold); background: rgba(240,201,123,0.08); }
+    .portal-card.hotel .portal-badge { color: var(--success); background: rgba(127,224,176,0.08); }
+    .portal-card.guest .portal-badge { color: var(--text); background: rgba(255,255,255,0.05); }
+    .portal-card h3 {
+      font-size: 26px;
       margin-bottom: 8px;
+      color: var(--text);
     }
-    .plan .price {
-      display: block;
-      font-size: 36px;
-      color: var(--gold);
-      font-weight: 800;
-      line-height: 1.1;
-      margin: 10px 0 14px;
-    }
-    .plan .price small {
-      font-size: 14px;
-      color: var(--muted-2);
-      font-weight: 600;
-    }
-    .plan p {
+    .portal-card p {
       color: var(--muted-2);
       margin-bottom: 18px;
-    }
-    .plan ul {
-      list-style: none;
-      display: grid;
-      gap: 12px;
-      margin-bottom: 22px;
-    }
-    .plan li {
-      position: relative;
-      padding-left: 18px;
-      color: var(--muted);
       font-size: 14px;
     }
-    .plan li::before {
-      content: "✓";
-      position: absolute;
-      left: 0;
-      color: var(--success);
-      font-weight: 700;
+    .mini-login {
+      display: grid;
+      gap: 12px;
+    }
+    .mini-login .field {
+      display: grid;
+      gap: 8px;
+    }
+    .mini-login label {
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+    .mini-login input {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.02);
+      color: var(--text);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font: inherit;
+      outline: none;
+    }
+    .mini-login input:focus {
+      border-color: rgba(240, 201, 123, 0.7);
+      box-shadow: 0 0 0 3px rgba(240, 201, 123, 0.08);
+    }
+    .mini-login .btn {
+      width: 100%;
+      padding: 12px 18px;
+      margin-top: 4px;
+      text-align: center;
     }
 
     .faq-wrap {
@@ -657,7 +774,7 @@
       font-size: 15px;
     }
     .faq-item.open .faq-answer {
-      max-height: 180px;
+      max-height: 190px;
       padding: 0 22px 20px;
     }
     .faq-item.open .faq-question i {
@@ -817,13 +934,17 @@
       .hero-grid,
       .about-wrap,
       .contact-wrap,
-      .gallery-grid {
+      .gallery-grid,
+      .portal-grid {
         grid-template-columns: 1fr;
       }
       .hero-visual { max-width: 620px; margin: 0 auto; }
     }
 
     @media (max-width: 700px) {
+      .nav-wrap {
+        width: 100%;
+      }
       .nav-links {
         display: none;
         width: 100%;
@@ -845,6 +966,10 @@
         color: var(--muted);
       }
       .nav-links a:hover { background: rgba(240,201,123,0.05); }
+      .header-controls {
+        width: 100%;
+        justify-content: space-between;
+      }
       .hero-actions {
         flex-direction: column;
         align-items: stretch;
@@ -871,18 +996,40 @@
           <span class="brand-name">TRUE CULTURE</span>
         </a>
 
-        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
-          <span></span>
-        </button>
+        <div class="nav-wrap">
+          <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+            <span></span>
+          </button>
 
-        <div class="nav-links" id="mainNav">
-          <a href="#home">Home</a>
-          <a href="#services">Services</a>
-          <a href="#why-us">Why Us</a>
-          <a href="#gallery">Gallery</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#faq">FAQ</a>
-          <a href="#contact">Contact</a>
+          <div class="nav-links" id="mainNav">
+            <a href="#home" data-i18n="nav.home">Home</a>
+            <a href="#services" data-i18n="nav.services">Services</a>
+            <a href="#gallery" data-i18n="nav.gallery">Gallery</a>
+            <a href="#about" data-i18n="nav.about">About</a>
+            <a href="#process" data-i18n="nav.process">Process</a>
+            <a href="#pricing" data-i18n="nav.pricing">Pricing</a>
+            <a href="#contact" data-i18n="nav.contact">Contact</a>
+          </div>
+
+          <div class="header-controls">
+            <div class="selector-box">
+              <label for="languageSelector">Lang</label>
+              <select id="languageSelector" aria-label="Select language">
+                <option value="en">EN</option>
+                <option value="hi">HI</option>
+                <option value="ar">AR</option>
+              </select>
+            </div>
+
+            <div class="selector-box">
+              <label for="currencySelector">Curr</label>
+              <select id="currencySelector" aria-label="Select currency">
+                <option value="INR">INR</option>
+                <option value="USD">USD</option>
+                <option value="AED">AED</option>
+              </select>
+            </div>
+          </div>
         </div>
       </nav>
     </div>
@@ -892,21 +1039,21 @@
     <section class="hero" id="home">
       <div class="container hero-grid">
         <div class="hero-copy">
-          <div class="eyebrow">Luxury hospitality digital studio</div>
-          <h1>Premium websites for hotels that want more bookings.</h1>
-          <p>
+          <div class="eyebrow" data-i18n="hero.eyebrow">Luxury hospitality digital studio</div>
+          <h1 data-i18n="hero.title">Premium websites for hotels that want more bookings.</h1>
+          <p data-i18n="hero.text">
             We build elegant, conversion-focused online experiences for hotels and hospitality brands that want to look premium and feel trustworthy from the first visit.
           </p>
 
           <div class="hero-actions">
-            <a href="#contact" class="btn btn-primary">Book a Consultation</a>
-            <a href="#services" class="btn btn-secondary">Explore Services</a>
+            <a href="#contact" class="btn btn-primary" data-i18n="hero.primaryBtn">Book a Consultation</a>
+            <a href="#services" class="btn btn-secondary" data-i18n="hero.secondaryBtn">Explore Services</a>
           </div>
 
           <div class="stats">
-            <div class="stat"><strong>01</strong><span>Brand Story</span></div>
-            <div class="stat"><strong>02</strong><span>Lead Flow</span></div>
-            <div class="stat"><strong>03</strong><span>Luxury Feel</span></div>
+            <div class="stat"><strong>01</strong><span data-i18n="hero.stat1">Brand Story</span></div>
+            <div class="stat"><strong>02</strong><span data-i18n="hero.stat2">Lead Flow</span></div>
+            <div class="stat"><strong>03</strong><span data-i18n="hero.stat3">Luxury Feel</span></div>
           </div>
         </div>
 
@@ -915,8 +1062,8 @@
             <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80" alt="Luxury hotel exterior" />
           </div>
           <div class="floating-box">
-            <strong>Luxury Hospitality</strong>
-            <span>Designed to impress guests before arrival.</span>
+            <strong data-i18n="hero.boxTitle">Luxury Hospitality</strong>
+            <span data-i18n="hero.boxText">Designed to impress guests before arrival.</span>
           </div>
         </div>
       </div>
@@ -924,61 +1071,34 @@
 
     <section id="services">
       <div class="container">
-        <div class="eyebrow" style="display:block; text-align:center;">What we build</div>
-        <h2 class="section-title" style="text-align:center;">Digital experiences that convert hospitality interest into enquiries</h2>
-        <p class="section-copy">Premium websites and digital solutions tailored to hotels, resorts, and guest-first hospitality businesses.</p>
+        <div class="eyebrow" style="display:block; text-align:center;" data-i18n="services.tag">What we build</div>
+        <h2 class="section-title" style="text-align:center;" data-i18n="services.title">Digital experiences that convert hospitality interest into enquiries</h2>
+        <p class="section-copy" data-i18n="services.text">Premium websites and digital solutions tailored to hotels, resorts, and guest-first hospitality businesses.</p>
 
         <div class="services-grid">
           <article class="service-card">
             <div class="service-icon"><i class="fa-solid fa-hotel"></i></div>
-            <h3>Hotel Websites</h3>
-            <p>Elegant landing pages that visually present your property, rooms, and overall guest experience.</p>
+            <h3 data-i18n="services.card1title">Hotel Websites</h3>
+            <p data-i18n="services.card1text">Elegant landing pages that visually present your property, rooms, and overall guest experience.</p>
           </article>
 
           <article class="service-card">
             <div class="service-icon"><i class="fa-solid fa-calendar-check"></i></div>
-            <h3>Booking Flow</h3>
-            <p>Clear, guest-friendly enquiry and reservation experience that helps turn interest into action.</p>
+            <h3 data-i18n="services.card2title">Booking Flow</h3>
+            <p data-i18n="services.card2text">Clear, guest-friendly enquiry and reservation experience that helps turn interest into action.</p>
           </article>
 
           <article class="service-card">
             <div class="service-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
-            <h3>App Concepts</h3>
-            <p>Responsive guest journeys and app-style experiences built for modern hospitality brands.</p>
+            <h3 data-i18n="services.card3title">App Concepts</h3>
+            <p data-i18n="services.card3text">Responsive guest journeys and app-style experiences built for modern hospitality brands.</p>
           </article>
 
           <article class="service-card">
             <div class="service-icon"><i class="fa-solid fa-comments"></i></div>
-            <h3>Lead Capture</h3>
-            <p>Simple, effective enquiry systems designed to gather genuine interest and support sales discussions.</p>
+            <h3 data-i18n="services.card4title">Lead Capture</h3>
+            <p data-i18n="services.card4text">Simple, effective enquiry systems designed to gather genuine interest and support sales discussions.</p>
           </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="why-us">
-      <div class="container">
-        <div class="eyebrow" style="display:block; text-align:center;">Why TRUE CULTURE</div>
-        <h2 class="section-title" style="text-align:center;">Built for trust, elegance, and conversion</h2>
-        <p class="section-copy">The right hospitality website should feel premium, guide guests effortlessly, and turn curiosity into enquiries.</p>
-
-        <div class="why-grid">
-          <div class="why-card">
-            <h3>Premium Identity</h3>
-            <p>Luxury visual design helps properties look credible, established, and worth staying for.</p>
-          </div>
-          <div class="why-card">
-            <h3>Guest Flow</h3>
-            <p>Clear structure and strong messaging reduce confusion and help visitors move toward enquiry quickly.</p>
-          </div>
-          <div class="why-card">
-            <h3>Mobile Ready</h3>
-            <p>Most hotel searches happen on mobile, so the experience must feel smooth across every device.</p>
-          </div>
-          <div class="why-card">
-            <h3>Lead Support</h3>
-            <p>We add enquiry systems that make it easy for interested guests to contact your team without friction.</p>
-          </div>
         </div>
       </div>
     </section>
@@ -1055,6 +1175,119 @@
       </div>
     </section>
 
+    <section id="pricing">
+      <div class="container">
+        <div class="eyebrow" style="display:block; text-align:center;">Packages</div>
+        <h2 class="section-title" style="text-align:center;">Simple pricing for premium hospitality growth</h2>
+        <p class="section-copy">Choose a package depending on how ambitious your digital presence needs to be.</p>
+
+        <div class="pricing-grid">
+          <div class="plan">
+            <div class="plan-badge">Starter</div>
+            <h3>Launch</h3>
+            <span class="price" data-currency-price="25000" data-currency-symbol="₹">₹25,000 <small>one-time</small></span>
+            <p>Perfect for small hospitality brands starting with a strong first impression.</p>
+            <ul>
+              <li>Single-page premium layout</li>
+              <li>3-5 key content sections</li>
+              <li>WhatsApp enquiry button</li>
+              <li>Contact form setup</li>
+            </ul>
+            <a href="#contact" class="btn btn-secondary">Get Started</a>
+          </div>
+
+          <div class="plan featured">
+            <div class="plan-badge">Most Popular</div>
+            <h3>Signature</h3>
+            <span class="price" data-currency-price="60000" data-currency-symbol="₹">₹60,000 <small>one-time</small></span>
+            <p>For hotels and resorts that need a stronger guest journey and clearer conversion flow.</p>
+            <ul>
+              <li>Multi-section luxury design</li>
+              <li>Gallery + room showcase</li>
+              <li>Lead capture workflow</li>
+              <li>Mobile optimisation</li>
+            </ul>
+            <a href="#contact" class="btn btn-primary">Book This</a>
+          </div>
+
+          <div class="plan">
+            <div class="plan-badge">Growth</div>
+            <h3>Brand Presence</h3>
+            <span class="price" data-currency-price="120000" data-currency-symbol="₹">₹1,20,000 <small>custom</small></span>
+            <p>For businesses that want a more strategic website and ongoing digital support.</p>
+            <ul>
+              <li>Custom hospitality branding</li>
+              <li>Conversion-focused structure</li>
+              <li>Advanced enquiry experience</li>
+              <li>Priority support & updates</li>
+            </ul>
+            <a href="#contact" class="btn btn-secondary">Discuss</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="portal-section" id="portal">
+      <div class="container">
+        <div class="eyebrow" style="display:block; text-align:center;">Portal Access</div>
+        <h2 class="section-title" style="text-align:center;">Choose your login panel</h2>
+        <p class="section-copy">Access the right workspace for your role in the TRUE CULTURE hospitality ecosystem.</p>
+
+        <div class="portal-grid">
+          <div class="portal-card admin">
+            <div class="portal-badge">Admin Login</div>
+            <h3>Admin</h3>
+            <p>Manage clients, leads, projects, and approvals from one dashboard.</p>
+            <form class="mini-login">
+              <div class="field">
+                <label for="adminEmail">Email</label>
+                <input id="adminEmail" type="email" placeholder="admin@trueculture.com" />
+              </div>
+              <div class="field">
+                <label for="adminPassword">Password</label>
+                <input id="adminPassword" type="password" placeholder="••••••••" />
+              </div>
+              <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+          </div>
+
+          <div class="portal-card hotel">
+            <div class="portal-badge">Hotels Login</div>
+            <h3>Hotels</h3>
+            <p>Track property details, enquiry performance, and digital marketing progress.</p>
+            <form class="mini-login">
+              <div class="field">
+                <label for="hotelEmail">Hotel Email</label>
+                <input id="hotelEmail" type="email" placeholder="hotel@brand.com" />
+              </div>
+              <div class="field">
+                <label for="hotelPassword">Password</label>
+                <input id="hotelPassword" type="password" placeholder="••••••••" />
+              </div>
+              <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+          </div>
+
+          <div class="portal-card guest">
+            <div class="portal-badge">Guest Login</div>
+            <h3>Guest</h3>
+            <p>Explore hotel details, discover experiences, and request property enquiries.</p>
+            <form class="mini-login">
+              <div class="field">
+                <label for="guestEmail">Email</label>
+                <input id="guestEmail" type="email" placeholder="guest@example.com" />
+              </div>
+              <div class="field">
+                <label for="guestPassword">Password</label>
+                <input id="guestPassword" type="password" placeholder="••••••••" />
+              </div>
+              <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="testimonials">
       <div class="container">
         <div class="eyebrow" style="display:block; text-align:center;">Testimonials</div>
@@ -1074,58 +1307,6 @@
             <p>“From first impression to lead capture, everything felt intentional. The website finally matched the standard of the guest experience we offer.”</p>
             <strong>Hospitality Consultant</strong>
             <span>Guest Experience Strategy</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="pricing">
-      <div class="container">
-        <div class="eyebrow" style="display:block; text-align:center;">Packages</div>
-        <h2 class="section-title" style="text-align:center;">Simple pricing for premium hospitality growth</h2>
-        <p class="section-copy">Choose a package depending on how ambitious your digital presence needs to be.</p>
-
-        <div class="pricing-grid">
-          <div class="plan">
-            <div class="plan-badge">Starter</div>
-            <h3>Launch</h3>
-            <span class="price">₹25,000 <small>one-time</small></span>
-            <p>Perfect for small hospitality brands starting with a strong first impression.</p>
-            <ul>
-              <li>Single-page premium layout</li>
-              <li>3-5 key content sections</li>
-              <li>WhatsApp enquiry button</li>
-              <li>Contact form setup</li>
-            </ul>
-            <a href="#contact" class="btn btn-secondary">Get Started</a>
-          </div>
-
-          <div class="plan featured">
-            <div class="plan-badge">Most Popular</div>
-            <h3>Signature</h3>
-            <span class="price">₹60,000 <small>one-time</small></span>
-            <p>For hotels and resorts that need a stronger guest journey and clearer conversion flow.</p>
-            <ul>
-              <li>Multi-section luxury design</li>
-              <li>Gallery + room showcase</li>
-              <li>Lead capture workflow</li>
-              <li>Mobile optimisation</li>
-            </ul>
-            <a href="#contact" class="btn btn-primary">Book This</a>
-          </div>
-
-          <div class="plan">
-            <div class="plan-badge">Growth</div>
-            <h3>Brand Presence</h3>
-            <span class="price">₹1,20,000 <small>custom</small></span>
-            <p>For businesses that want a more strategic website and ongoing digital support.</p>
-            <ul>
-              <li>Custom hospitality branding</li>
-              <li>Conversion-focused structure</li>
-              <li>Advanced enquiry experience</li>
-              <li>Priority support & updates</li>
-            </ul>
-            <a href="#contact" class="btn btn-secondary">Discuss</a>
           </div>
         </div>
       </div>
@@ -1290,6 +1471,144 @@
       });
     });
 
+    const currencyConfig = {
+      INR: { symbol: '₹', rate: 1 },
+      USD: { symbol: '$', rate: 0.012 },
+      AED: { symbol: 'د.إ', rate: 0.044 }
+    };
+
+    const translations = {
+      en: {
+        'nav.home': 'Home',
+        'nav.services': 'Services',
+        'nav.gallery': 'Gallery',
+        'nav.about': 'About',
+        'nav.process': 'Process',
+        'nav.pricing': 'Pricing',
+        'nav.contact': 'Contact',
+        'hero.eyebrow': 'Luxury hospitality digital studio',
+        'hero.title': 'Premium websites for hotels that want more bookings.',
+        'hero.text': 'We build elegant, conversion-focused online experiences for hotels and hospitality brands that want to look premium and feel trustworthy from the first visit.',
+        'hero.primaryBtn': 'Book a Consultation',
+        'hero.secondaryBtn': 'Explore Services',
+        'hero.stat1': 'Brand Story',
+        'hero.stat2': 'Lead Flow',
+        'hero.stat3': 'Luxury Feel',
+        'hero.boxTitle': 'Luxury Hospitality',
+        'hero.boxText': 'Designed to impress guests before arrival.',
+        'services.tag': 'What we build',
+        'services.title': 'Digital experiences that convert hospitality interest into enquiries',
+        'services.text': 'Premium websites and digital solutions tailored to hotels, resorts, and guest-first hospitality businesses.',
+        'services.card1title': 'Hotel Websites',
+        'services.card1text': 'Elegant landing pages that visually present your property, rooms, and overall guest experience.',
+        'services.card2title': 'Booking Flow',
+        'services.card2text': 'Clear, guest-friendly enquiry and reservation experience that helps turn interest into action.',
+        'services.card3title': 'App Concepts',
+        'services.card3text': 'Responsive guest journeys and app-style experiences built for modern hospitality brands.',
+        'services.card4title': 'Lead Capture',
+        'services.card4text': 'Simple, effective enquiry systems designed to gather genuine interest and support sales discussions.'
+      },
+      hi: {
+        'nav.home': 'होम',
+        'nav.services': 'सेवाएं',
+        'nav.gallery': 'गैलरी',
+        'nav.about': 'हमारे बारे में',
+        'nav.process': 'प्रक्रिया',
+        'nav.pricing': 'प्राइसिंग',
+        'nav.contact': 'संपर्क',
+        'hero.eyebrow': 'लग्ज़री आतिथ्य डिजिटल स्टूडियो',
+        'hero.title': 'होटल्स के लिए प्रीमियम वेबसाइटें जो अधिक बुकिंग लाती हैं।',
+        'hero.text': 'हम होटल और आतिथ्य ब्रांड्स के लिए सुंदर, कन्वर्ज़न-फोकस्ड डिजिटल अनुभव बनाते हैं जो पहली नज़र में प्रीमियम और भरोसेमंद लगें।',
+        'hero.primaryBtn': 'कंसल्टेशन बुक करें',
+        'hero.secondaryBtn': 'सेवाएं देखें',
+        'hero.stat1': 'ब्रांड स्टोरी',
+        'hero.stat2': 'लीड फ्लो',
+        'hero.stat3': 'लग्ज़री फील',
+        'hero.boxTitle': 'लग्ज़री आतिथ्य',
+        'hero.boxText': 'मेहमानों को आने से पहले ही प्रभावित करने के लिए डिज़ाइन किया गया।',
+        'services.tag': 'हम क्या बनाते हैं',
+        'services.title': 'ऐसे डिजिटल अनुभव जो आतिथ्य रुचि को पूछताछ में बदलें',
+        'services.text': 'होटल, रिसॉर्ट और गेस्ट-फर्स्ट आतिथ्य व्यवसायों के लिए प्रीमियम वेबसाइट और डिजिटल समाधान।',
+        'services.card1title': 'होटल वेबसाइट्स',
+        'services.card1text': 'ऐसी सुंदर लैंडिंग पेज जो आपके प्रॉपर्टी, रूम और समग्र अनुभव को आकर्षक तरीके से प्रस्तुत करती हैं।',
+        'services.card2title': 'बुकिंग फ्लो',
+        'services.card2text': 'स्पष्ट, मेहमानों के लिए उपयोगी पूछताछ और आरक्षण अनुभव जो रुचि को कार्रवाई में बदलता है।',
+        'services.card3title': 'ऐप कॉन्सेप्ट',
+        'services.card3text': 'मोबाइल और रिस्पॉन्सिव गेस्ट जर्नी और ऐप-स्टाइल अनुभव।',
+        'services.card4title': 'लीड कैप्चर',
+        'services.card4text': 'सरल और प्रभावी पूछताछ सिस्टम जो सच्ची रुचि को सही टीम तक पहुँचाते हैं।'
+      },
+      ar: {
+        'nav.home': 'الرئيسية',
+        'nav.services': 'الخدمات',
+        'nav.gallery': 'المعرض',
+        'nav.about': 'من نحن',
+        'nav.process': 'العملية',
+        'nav.pricing': 'التسعير',
+        'nav.contact': 'اتصل بنا',
+        'hero.eyebrow': 'استوديو رقمي فاخر للسياحة والضيافة',
+        'hero.title': 'مواقع إلكترونية فاخرة للفنادق التي ترغب في زيادة الحجوزات.',
+        'hero.text': 'نصمم تجارب رقمية أنيقة وتركّز على التحويل للمنازل الفندقية والعلامات الضيافية التي تريد أن تبدو فاخرة وموثوقة من أول زيارة.',
+        'hero.primaryBtn': 'احجز استشارة',
+        'hero.secondaryBtn': 'استكشف الخدمات',
+        'hero.stat1': 'قصة العلامة',
+        'hero.stat2': 'تدفق العملاء',
+        'hero.stat3': 'إحساس فاخر',
+        'hero.boxTitle': 'الضيافة الفاخرة',
+        'hero.boxText': 'مصمم لإبهار الضيوف قبل الوصول.',
+        'services.tag': 'ماذا نصنع',
+        'services.title': 'تجارب رقمية تحول اهتمام الضيافة إلى استفسارات',
+        'services.text': 'مواقع إلكترونية ومتخصصات مخصصة للفنادق والمنتجعات والأعمال الضيافية أولاً.',
+        'services.card1title': 'مواقع الفنادق',
+        'services.card1text': 'صفحات هبوط أنيقة تقدم الممتلكات والغرف وتجربة الضيف بأسلوب فخم.',
+        'services.card2title': 'تدفق الحجز',
+        'services.card2text': 'تجربة استفسار وحجز واضحة ومريحة تساعد على تحويل الاهتمام إلى إجراء.',
+        'services.card3title': 'مفاهيم التطبيقات',
+        'services.card3text': 'رحلات ضيف متجاوبة وتجارب بتصميم تطبيق حديث.',
+        'services.card4title': 'التقاط العملاء',
+        'services.card4text': 'نظم استفسار فعالة وجذابة تجمع الاهتمام الحقيقي وتوصل إلى فريق المبيعات.'
+      }
+    };
+
+    function formatCurrency(value, currency) {
+      const cfg = currencyConfig[currency] || currencyConfig.INR;
+      const number = Number(value) * cfg.rate;
+      const symbol = cfg.symbol;
+
+      if (currency === 'INR') {
+        return `${symbol}${new Intl.NumberFormat('en-IN').format(number)}`;
+      }
+
+      if (currency === 'USD') {
+        return `${symbol}${new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(number)}`;
+      }
+
+      return `${symbol}${new Intl.NumberFormat('en-AE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(number)}`;
+    }
+
+    function updateCurrency() {
+      const currency = document.getElementById('currencySelector').value;
+      document.querySelectorAll('[data-currency-price]').forEach((el) => {
+        const value = Number(el.getAttribute('data-currency-price'));
+        const formatted = formatCurrency(value, currency);
+        el.innerHTML = `${formatted} <small>one-time</small>`;
+      });
+    }
+
+    function updateLanguage() {
+      const lang = document.getElementById('languageSelector').value;
+      const map = translations[lang] || translations.en;
+      document.querySelectorAll('[data-i18n]').forEach((el) => {
+        const key = el.getAttribute('data-i18n');
+        if (map[key]) {
+          el.textContent = map[key];
+        }
+      });
+    }
+
+    document.getElementById('languageSelector').addEventListener('change', updateLanguage);
+    document.getElementById('currencySelector').addEventListener('change', updateCurrency);
+
     const contactForm = document.getElementById('contactForm');
     const formStatus = document.getElementById('formStatus');
 
@@ -1300,6 +1619,9 @@
         }
       });
     }
+
+    updateLanguage();
+    updateCurrency();
   </script>
 </body>
 </html>

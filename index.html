@@ -222,6 +222,16 @@
     }
     .mini-login input:focus { border-color: rgba(240, 201, 123, 0.7); box-shadow: 0 0 0 3px rgba(240, 201, 123, 0.08); }
     .mini-login .btn { width: 100%; padding: 12px 18px; margin-top: 4px; text-align: center; }
+
+    .password-wrap { position: relative; }
+    .password-field { padding-right: 44px !important; }
+    .password-toggle {
+      position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+      border: none; background: transparent; color: var(--muted-2); cursor: pointer;
+      font-size: 16px; width: 24px; height: 24px; display: grid; place-items: center;
+    }
+    .password-toggle:hover { color: var(--gold); }
+
     .auth-message {
       display: none; margin-top: 8px; padding: 10px 12px; border-radius: 10px; font-size: 13px; font-weight: 600; border: 1px solid rgba(255,255,255,0.08);
       background: rgba(255,255,255,0.02); color: var(--muted);
@@ -595,7 +605,12 @@
               </div>
               <div class="field">
                 <label for="adminPassword">Password</label>
-                <input id="adminPassword" type="password" placeholder="••••••••" required />
+                <div class="password-wrap">
+                  <input id="adminPassword" class="password-field" type="password" placeholder="••••••••" required />
+                  <button type="button" class="password-toggle" data-target="adminPassword" aria-label="Show password">
+                    <i class="fa-solid fa-eye"></i>
+                  </button>
+                </div>
               </div>
               <button type="submit" class="btn btn-primary">Login</button>
               <div class="auth-message" aria-live="polite"></div>
@@ -613,7 +628,12 @@
               </div>
               <div class="field">
                 <label for="hotelPassword">Password</label>
-                <input id="hotelPassword" type="password" placeholder="••••••••" required />
+                <div class="password-wrap">
+                  <input id="hotelPassword" class="password-field" type="password" placeholder="••••••••" required />
+                  <button type="button" class="password-toggle" data-target="hotelPassword" aria-label="Show password">
+                    <i class="fa-solid fa-eye"></i>
+                  </button>
+                </div>
               </div>
               <button type="submit" class="btn btn-primary">Login</button>
               <div class="auth-message" aria-live="polite"></div>
@@ -631,7 +651,12 @@
               </div>
               <div class="field">
                 <label for="guestPassword">Password</label>
-                <input id="guestPassword" type="password" placeholder="••••••••" required />
+                <div class="password-wrap">
+                  <input id="guestPassword" class="password-field" type="password" placeholder="••••••••" required />
+                  <button type="button" class="password-toggle" data-target="guestPassword" aria-label="Show password">
+                    <i class="fa-solid fa-eye"></i>
+                  </button>
+                </div>
               </div>
               <button type="submit" class="btn btn-primary">Login</button>
               <div class="auth-message" aria-live="polite"></div>
@@ -957,6 +982,19 @@
         msg.classList.remove('show', 'error', 'success');
       });
     }
+
+    document.querySelectorAll('.password-toggle').forEach((toggle) => {
+      toggle.addEventListener('click', () => {
+        const targetId = toggle.dataset.target;
+        const input = document.getElementById(targetId);
+        if (!input) return;
+
+        const isHidden = input.type === 'password';
+        input.type = isHidden ? 'text' : 'password';
+        toggle.setAttribute('aria-label', isHidden ? 'Hide password' : 'Show password');
+        toggle.innerHTML = isHidden ? '<i class="fa-solid fa-eye-slash"></i>' : '<i class="fa-solid fa-eye"></i>';
+      });
+    });
 
     const roleForms = document.querySelectorAll('.mini-login');
     const dashboards = document.querySelectorAll('.role-dashboard');

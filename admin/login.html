@@ -18,6 +18,7 @@
         --line: rgba(255, 255, 255, 0.09);
         --shadow: rgba(0, 0, 0, 0.28);
         --danger: #ffb5a0;
+        --success: #7fe0b9;
       }
 
       * { box-sizing: border-box; }
@@ -254,6 +255,17 @@
         text-decoration: none;
       }
 
+      .status-message {
+        min-height: 18px;
+        font-size: 13px;
+        color: var(--danger);
+        margin-top: -4px;
+      }
+
+      .status-message.success {
+        color: var(--success);
+      }
+
       .primary-btn {
         margin-top: 8px;
         border: none;
@@ -337,7 +349,7 @@
           <h2>Admin Login</h2>
           <p class="subtitle">Sign in to continue to your dashboard</p>
 
-          <form>
+          <form id="adminLoginForm" novalidate>
             <label>
               Email address
               <input type="email" name="email" placeholder="admin@trueculture.com" required />
@@ -356,6 +368,8 @@
               <a href="#">Forgot password?</a>
             </div>
 
+            <div id="statusMessage" class="status-message" aria-live="polite"></div>
+
             <button class="primary-btn" type="submit">Login</button>
           </form>
 
@@ -365,5 +379,43 @@
         </div>
       </section>
     </main>
+
+    <script>
+      const form = document.getElementById('adminLoginForm');
+      const statusMessage = document.getElementById('statusMessage');
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const email = form.email.value.trim();
+        const password = form.password.value.trim();
+
+        if (!email || !password) {
+          statusMessage.textContent = 'Please enter both email and password.';
+          statusMessage.classList.remove('success');
+          return;
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          statusMessage.textContent = 'Please enter a valid email address.';
+          statusMessage.classList.remove('success');
+          return;
+        }
+
+        if (password.length < 6) {
+          statusMessage.textContent = 'Password must be at least 6 characters.';
+          statusMessage.classList.remove('success');
+          return;
+        }
+
+        statusMessage.textContent = 'Signing in...';
+        statusMessage.classList.add('success');
+
+        setTimeout(() => {
+          window.location.href = './index.html';
+        }, 700);
+      });
+    </script>
   </body>
 </html>

@@ -259,7 +259,6 @@
         min-height: 18px;
         font-size: 13px;
         color: var(--danger);
-        margin-top: -4px;
       }
 
       .status-message.success {
@@ -382,39 +381,51 @@
 
     <script>
       const form = document.getElementById('adminLoginForm');
-      const statusMessage = document.getElementById('statusMessage');
+      const status = document.getElementById('statusMessage');
 
-      form.addEventListener('submit', function (event) {
+      form.addEventListener('submit', async function (event) {
         event.preventDefault();
 
         const email = form.email.value.trim();
         const password = form.password.value.trim();
 
         if (!email || !password) {
-          statusMessage.textContent = 'Please enter both email and password.';
-          statusMessage.classList.remove('success');
+          status.textContent = 'Please enter both email and password.';
+          status.classList.remove('success');
           return;
         }
 
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
-          statusMessage.textContent = 'Please enter a valid email address.';
-          statusMessage.classList.remove('success');
+          status.textContent = 'Please enter a valid email address.';
+          status.classList.remove('success');
           return;
         }
 
-        if (password.length < 6) {
-          statusMessage.textContent = 'Password must be at least 6 characters.';
-          statusMessage.classList.remove('success');
-          return;
+        status.textContent = 'Signing in...';
+        status.classList.remove('success');
+
+        try {
+          const response = await fetch('/api/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password })
+          });
+
+          const data = await response.json();
+
+          if (!response.ok || !data.success) {
+            status.textContent = data.message || 'Login failed.';
+            return;
+          }
+
+          localStorage.setItem('tcAdminLoggedIn', 'true');
+          status.textContent = 'Login successful. Redirecting...';
+          status.classList.add('success');
+          window.location.href = data.redirect || '/admin/index.html';
+        } catch (error) {
+          status.textContent = 'Could not reach login service. Please try again.';
         }
-
-        statusMessage.textContent = 'Signing in...';
-        statusMessage.classList.add('success');
-
-        setTimeout(() => {
-          window.location.href = './index.html';
-        }, 700);
       });
     </script>
   </body>

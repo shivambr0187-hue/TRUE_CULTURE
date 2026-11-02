@@ -20,6 +20,8 @@
         --muted-2: #a8b6c8;
         --line: rgba(255, 255, 255, 0.08);
         --shadow: rgba(0, 0, 0, 0.35);
+        --success: #7fe0b9;
+        --danger: #ffb5a0;
       }
 
       * { box-sizing: border-box; }
@@ -27,24 +29,27 @@
       body {
         margin: 0;
         font-family: Arial, Helvetica, sans-serif;
-        background:
-          radial-gradient(circle at top left, rgba(242, 199, 125, 0.08), transparent 18%),
-          linear-gradient(180deg, var(--bg) 0%, #091824 100%);
+        background: radial-gradient(circle at top left, rgba(242, 199, 125, 0.08), transparent 18%), linear-gradient(180deg, var(--bg) 0%, #091824 100%);
         color: var(--text);
         line-height: 1.6;
         overflow-x: hidden;
       }
-
       a { color: inherit; text-decoration: none; }
       img { display: block; max-width: 100%; }
-      button {
-        font: inherit;
+      button, input, textarea { font: inherit; }
+      .container { width: min(1200px, 92%); margin: 0 auto; }
+      .section { padding: 110px 0; }
+      .eyebrow {
+        color: var(--gold);
+        text-transform: uppercase;
+        letter-spacing: 0.28em;
+        font-size: 12px;
+        font-weight: 700;
       }
-
-      .container {
-        width: min(1280px, 92%);
-        margin: 0 auto;
-      }
+      h1, h2, h3 { margin: 0 0 18px; letter-spacing: -0.05em; }
+      h1 { font-size: clamp(42px, 6vw, 96px); line-height: 0.95; }
+      h2 { font-size: clamp(30px, 4vw, 52px); }
+      p { margin: 0; color: var(--muted); }
 
       header {
         position: sticky;
@@ -54,7 +59,6 @@
         backdrop-filter: blur(12px);
         border-bottom: 1px solid var(--line);
       }
-
       nav {
         display: flex;
         align-items: center;
@@ -62,14 +66,12 @@
         gap: 20px;
         min-height: 84px;
       }
-
       .brand {
         display: inline-flex;
         align-items: center;
         gap: 14px;
         min-width: 260px;
       }
-
       .brand-mark {
         width: 46px;
         height: 46px;
@@ -86,7 +88,6 @@
         position: relative;
         overflow: hidden;
       }
-
       .brand-mark::before {
         content: "";
         position: absolute;
@@ -94,7 +95,6 @@
         border-radius: 10px;
         border: 1px solid rgba(13, 27, 40, 0.25);
       }
-
       .brand-mark::after {
         content: "";
         position: absolute;
@@ -102,12 +102,7 @@
         background: linear-gradient(135deg, rgba(255,255,255,0.3), rgba(255,255,255,0));
         transform: rotate(18deg);
       }
-
-      .brand-mark span {
-        position: relative;
-        z-index: 1;
-      }
-
+      .brand-mark span { position: relative; z-index: 1; }
       .brand-name {
         font-size: clamp(20px, 2vw, 30px);
         font-weight: 900;
@@ -116,7 +111,6 @@
         color: var(--gold);
         line-height: 1;
       }
-
       .nav-menu {
         display: flex;
         align-items: center;
@@ -125,18 +119,13 @@
         flex: 1;
         flex-wrap: wrap;
       }
-
       .nav-menu a {
         font-size: 14px;
         font-weight: 600;
         color: var(--muted);
         transition: color 0.2s ease;
       }
-
-      .nav-menu a:hover {
-        color: var(--gold-soft);
-      }
-
+      .nav-menu a:hover { color: var(--gold-soft); }
       .nav-actions {
         display: flex;
         align-items: center;
@@ -145,7 +134,6 @@
         justify-content: flex-end;
         flex-wrap: wrap;
       }
-
       .lang-btn {
         border: 1px solid rgba(255,255,255,0.12);
         background: rgba(255,255,255,0.02);
@@ -158,21 +146,12 @@
         cursor: pointer;
         transition: border-color 0.2s ease, transform 0.2s ease;
       }
-
-      .lang-btn span {
-        color: var(--gold);
-        margin-left: 5px;
-      }
-
+      .lang-btn span { color: var(--gold); margin-left: 5px; }
       .lang-btn:hover {
         border-color: rgba(242, 199, 125, 0.45);
         transform: translateY(-1px);
       }
-
-      .login-dropdown {
-        position: relative;
-      }
-
+      .login-dropdown { position: relative; }
       .login-btn {
         padding: 11px 22px;
         border: 1px solid rgba(242, 199, 125, 0.45);
@@ -185,17 +164,15 @@
         box-shadow: 0 16px 28px rgba(242, 199, 125, 0.2);
         transition: transform 0.2s ease, box-shadow 0.2s ease;
       }
-
       .login-btn:hover {
         transform: translateY(-1px);
         box-shadow: 0 22px 36px rgba(242, 199, 125, 0.24);
       }
-
       .login-menu {
         position: absolute;
         top: calc(100% + 10px);
         right: 0;
-        min-width: 210px;
+        min-width: 220px;
         display: none;
         flex-direction: column;
         background: rgba(16, 31, 45, 0.98);
@@ -205,13 +182,9 @@
         box-shadow: 0 20px 45px rgba(0,0,0,0.36);
         z-index: 80;
       }
-
       .login-dropdown.open .login-menu,
       .login-dropdown:hover .login-menu,
-      .login-dropdown:focus-within .login-menu {
-        display: flex;
-      }
-
+      .login-dropdown:focus-within .login-menu { display: flex; }
       .login-menu a {
         display: block;
         padding: 12px 16px;
@@ -221,15 +194,8 @@
         border-bottom: 1px solid rgba(255,255,255,0.05);
         transition: background 0.2s ease, color 0.2s ease;
       }
-
-      .login-menu a:last-child {
-        border-bottom: none;
-      }
-
-      .login-menu a:hover {
-        background: rgba(242, 199, 125, 0.08);
-        color: var(--gold-soft);
-      }
+      .login-menu a:last-child { border-bottom: none; }
+      .login-menu a:hover { background: rgba(242, 199, 125, 0.08); color: var(--gold-soft); }
 
       .hero {
         min-height: calc(100vh - 84px);
@@ -239,33 +205,13 @@
         text-align: center;
         padding: 80px 0;
       }
-
-      .hero-inner {
-        max-width: 980px;
-      }
-
-      .eyebrow {
-        color: var(--gold);
-        text-transform: uppercase;
-        letter-spacing: 0.28em;
-        font-size: 12px;
-        font-weight: 700;
-      }
-
-      h1 {
-        margin: 20px 0 18px;
-        font-size: clamp(42px, 6vw, 96px);
-        line-height: 0.95;
-        letter-spacing: -0.06em;
-      }
-
+      .hero-inner { max-width: 980px; }
       .hero p {
         max-width: 760px;
         margin: 0 auto 30px;
         color: var(--muted-2);
         font-size: clamp(17px, 2vw, 22px);
       }
-
       .hero-actions {
         display: flex;
         align-items: center;
@@ -273,7 +219,6 @@
         gap: 18px;
         flex-wrap: wrap;
       }
-
       .btn {
         display: inline-block;
         padding: 16px 30px;
@@ -281,21 +226,223 @@
         font-weight: 700;
         transition: transform 0.2s ease, box-shadow 0.2s ease;
       }
-
-      .btn:hover {
-        transform: translateY(-1px);
-      }
-
+      .btn:hover { transform: translateY(-1px); }
       .btn-primary {
         background: linear-gradient(135deg, var(--gold), var(--gold-2));
         color: #101827;
         box-shadow: 0 18px 32px rgba(242, 199, 125, 0.2);
       }
-
       .btn-secondary {
         border: 1px solid rgba(242, 199, 125, 0.4);
         color: var(--text);
         background: transparent;
+      }
+
+      .section-head {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        margin-bottom: 40px;
+      }
+      .section-head p { max-width: 640px; }
+
+      .services-grid,
+      .pricing-grid,
+      .gallery-grid,
+      .stats-grid,
+      .process-grid {
+        display: grid;
+        gap: 22px;
+      }
+      .services-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .pricing-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .gallery-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .stats-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .process-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+      .card {
+        background: linear-gradient(180deg, rgba(17,32,46,0.96), rgba(11,20,29,0.96));
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        padding: 26px 22px;
+        box-shadow: 0 18px 36px rgba(0,0,0,0.12);
+      }
+      .service-card span,
+      .process-card span,
+      .stat-box .icon {
+        width: 52px;
+        height: 52px;
+        display: inline-grid;
+        place-items: center;
+        border-radius: 16px;
+        background: rgba(242, 199, 125, 0.12);
+        color: var(--gold-soft);
+        font-weight: 800;
+        margin-bottom: 18px;
+      }
+      .service-card h3, .pricing-card h3, .process-card h3 { font-size: 24px; margin-bottom: 12px; }
+      .service-card p, .pricing-card p { color: var(--muted); }
+      .service-card ul {
+        list-style: none;
+        margin: 18px 0 0;
+        padding: 0;
+        display: grid;
+        gap: 8px;
+        color: var(--muted);
+      }
+      .service-card li::before {
+        content: "•";
+        color: var(--gold);
+        margin-right: 8px;
+      }
+
+      .about-wrap {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 24px;
+        align-items: center;
+      }
+      .about-text {
+        background: rgba(17, 32, 46, 0.9);
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        padding: 30px;
+      }
+      .about-text p + p { margin-top: 18px; }
+      .stat-box {
+        display: grid;
+        gap: 20px;
+      }
+      .stat-box .card {
+        padding: 24px 20px;
+      }
+      .stat-box .number {
+        font-size: clamp(28px, 3vw, 40px);
+        font-weight: 800;
+        letter-spacing: -0.04em;
+      }
+
+      .gallery-card {
+        background: linear-gradient(180deg, rgba(17,32,46,0.96), rgba(11,20,29,0.96));
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        overflow: hidden;
+        min-height: 270px;
+        position: relative;
+      }
+      .gallery-image {
+        height: 270px;
+        background: linear-gradient(135deg, rgba(242,199,125,0.35), rgba(7,19,29,0.5)), linear-gradient(135deg, #173344, #0b1a28);
+      }
+      .gallery-caption {
+        position: absolute;
+        left: 18px;
+        right: 18px;
+        bottom: 18px;
+        background: rgba(9, 18, 28, 0.72);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 14px;
+        padding: 12px 14px;
+        font-size: 14px;
+        color: var(--gold-soft);
+      }
+
+      .pricing-card {
+        position: relative;
+        overflow: hidden;
+      }
+      .pricing-card.featured {
+        border-color: rgba(242, 199, 125, 0.4);
+        box-shadow: 0 24px 50px rgba(242, 199, 125, 0.08);
+      }
+      .pricing-card .price {
+        font-size: clamp(28px, 3vw, 42px);
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        margin: 14px 0 10px;
+      }
+      .pricing-card ul {
+        list-style: none;
+        padding: 0;
+        margin: 18px 0;
+        display: grid;
+        gap: 8px;
+        color: var(--muted);
+      }
+      .pricing-card li::before {
+        content: "✓";
+        color: var(--success);
+        margin-right: 8px;
+      }
+      .pricing-card .label {
+        display: inline-block;
+        padding: 7px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(242, 199, 125, 0.4);
+        color: var(--gold-soft);
+        background: rgba(242, 199, 125, 0.08);
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: 22px;
+      }
+      .contact-box,
+      .enquiry-panel {
+        background: linear-gradient(180deg, rgba(17,32,46,0.96), rgba(11,20,29,0.96));
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        padding: 28px;
+      }
+      .contact-list {
+        list-style: none;
+        padding: 0;
+        margin: 20px 0 0;
+        display: grid;
+        gap: 14px;
+        color: var(--muted);
+      }
+      .contact-list strong { color: var(--text); }
+      .enquiry-form { display: grid; gap: 18px; }
+      .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+      .field-group { display: grid; gap: 8px; }
+      .field-group label {
+        font-size: 13px;
+        color: var(--muted);
+        font-weight: 700;
+      }
+      .field-group input,
+      .field-group textarea {
+        width: 100%;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 12px 14px;
+        background: rgba(255,255,255,0.02);
+        color: var(--text);
+      }
+      .field-group textarea { min-height: 120px; resize: vertical; }
+      .status-message {
+        min-height: 18px;
+        font-size: 13px;
+        color: var(--danger);
+      }
+      .status-message.success { color: var(--success); }
+
+      footer {
+        padding: 26px 0 34px;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+      }
+      .footer-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
       }
 
       @media (max-width: 980px) {
@@ -304,38 +451,22 @@
           align-items: flex-start;
           flex-wrap: wrap;
         }
-
-        .brand {
-          min-width: auto;
-        }
-
+        .brand { min-width: auto; }
         .nav-menu {
           width: 100%;
           order: 3;
           justify-content: flex-start;
           padding-top: 8px;
         }
-
-        .nav-actions {
-          margin-left: auto;
-          min-width: auto;
-        }
+        .nav-actions { margin-left: auto; min-width: auto; }
+        .services-grid, .pricing-grid, .gallery-grid, .stats-grid, .process-grid, .about-wrap, .contact-grid { grid-template-columns: 1fr; }
       }
-
       @media (max-width: 640px) {
-        .nav-actions {
-          width: 100%;
-          justify-content: flex-start;
-        }
-
-        .lang-btn {
-          padding: 9px 12px;
-          letter-spacing: 0.12em;
-        }
-
-        .brand-name {
-          letter-spacing: 0.08em;
-        }
+        .nav-actions { width: 100%; justify-content: flex-start; }
+        .lang-btn { padding: 9px 12px; letter-spacing: 0.12em; }
+        .brand-name { letter-spacing: 0.08em; }
+        .field-row { grid-template-columns: 1fr; }
+        .section { padding: 80px 0; }
       }
     </style>
   </head>
@@ -343,19 +474,19 @@
     <header>
       <div class="container">
         <nav>
-          <a href="#" class="brand" aria-label="TRUE CULTURE home">
+          <a href="#home" class="brand" aria-label="TRUE CULTURE home">
             <span class="brand-mark"><span>TC</span></span>
             <span class="brand-name">TRUE CULTURE</span>
           </a>
 
           <div class="nav-menu">
-            <a href="#">Home</a>
-            <a href="#">Services</a>
-            <a href="#">Gallery</a>
-            <a href="#">About</a>
-            <a href="#">Process</a>
-            <a href="#">Pricing</a>
-            <a href="#">Contact</a>
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#about">About</a>
+            <a href="#process">Process</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#contact">Contact</a>
           </div>
 
           <div class="nav-actions">
@@ -366,8 +497,9 @@
               <button class="login-btn" type="button">Login</button>
               <div class="login-menu" aria-label="Login menu">
                 <a href="/admin/login.html">Admin Login</a>
-                <a href="/hotel/login">Hotel Login</a>
-                <a href="/user/login">User Login</a>
+                <a href="/admin/login.html?mode=signup">Admin Sign Up</a>
+                <a href="/admin/login.html">Hotel Login</a>
+                <a href="/admin/login.html">User Login</a>
               </div>
             </div>
           </div>
@@ -376,7 +508,7 @@
     </header>
 
     <main>
-      <section class="hero">
+      <section class="hero" id="home">
         <div class="container hero-inner">
           <div class="eyebrow">Luxury hospitality digital</div>
           <h1>TRUE CULTURE</h1>
@@ -384,26 +516,286 @@
             Premium digital experiences for luxury hotels, resorts, and hospitality brands — crafted to inspire, convert, and elevate every guest journey.
           </p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#">Book a Consultation</a>
-            <a class="btn btn-secondary" href="#">Explore Services</a>
+            <a class="btn btn-primary" href="#contact">Book a Consultation</a>
+            <a class="btn btn-secondary" href="#services">Explore Services</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section container" id="services">
+        <div class="section-head">
+          <div class="eyebrow">Our Services</div>
+          <h2>Everything needed to grow luxury hospitality brands.</h2>
+          <p>From immersive digital experiences to demand generation, we help brands convert attention into bookings and loyalty.</p>
+        </div>
+
+        <div class="services-grid">
+          <article class="card service-card">
+            <span>01</span>
+            <h3>Website Design</h3>
+            <p>High-converting brand websites designed for premium customer journeys and direct booking goals.</p>
+            <ul>
+              <li>Luxury UI/UX design</li>
+              <li>Booking-focused flows</li>
+              <li>Responsive implementation</li>
+            </ul>
+          </article>
+
+          <article class="card service-card">
+            <span>02</span>
+            <h3>Booking Experience</h3>
+            <p>Smart, frictionless guest interactions that reduce drop-off and support smooth conversions.</p>
+            <ul>
+              <li>Lead capture journeys</li>
+              <li>CRM-ready integrations</li>
+              <li>Funnel optimization</li>
+            </ul>
+          </article>
+
+          <article class="card service-card">
+            <span>03</span>
+            <h3>Growth Marketing</h3>
+            <p>Campaigns that improve awareness, revenue, and brand recall in a competitive hospitality market.</p>
+            <ul>
+              <li>SEO and content strategy</li>
+              <li>Paid acquisition</li>
+              <li>Brand storytelling</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section container" id="about">
+        <div class="section-head">
+          <div class="eyebrow">About Us</div>
+          <h2>Built for boutique properties, resorts, and premium hospitality brands.</h2>
+        </div>
+
+        <div class="about-wrap">
+          <div class="about-text">
+            <p>TRUE CULTURE partners with hospitality businesses that want more than a standard website. We design digital experiences that feel premium, perform beautifully, and turn market attention into bookings.</p>
+            <p>Our teams blend strategy, design, storytelling, and execution to give properties a polished online presence that matches the quality of the guest experience itself.</p>
+          </div>
+
+          <div class="stat-box">
+            <div class="card">
+              <div class="icon">★</div>
+              <div class="number">120+</div>
+              <p>Luxury hospitality projects delivered.</p>
+            </div>
+            <div class="card">
+              <div class="icon">↗</div>
+              <div class="number">3.4x</div>
+              <p>Average lift in qualified inquiry conversion.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section container" id="gallery">
+        <div class="section-head">
+          <div class="eyebrow">Gallery</div>
+          <h2>Design inspiration from premium stays and memorable guest journeys.</h2>
+        </div>
+
+        <div class="gallery-grid">
+          <div class="gallery-card">
+            <div class="gallery-image"></div>
+            <div class="gallery-caption">Private villa digital experience</div>
+          </div>
+          <div class="gallery-card">
+            <div class="gallery-image" style="background: linear-gradient(135deg, rgba(242,199,125,0.35), rgba(7,19,29,0.5)), linear-gradient(135deg, #1a2437, #102331);"></div>
+            <div class="gallery-caption">Boutique resort brand launch</div>
+          </div>
+          <div class="gallery-card">
+            <div class="gallery-image" style="background: linear-gradient(135deg, rgba(242,199,125,0.35), rgba(7,19,29,0.5)), linear-gradient(135deg, #213d3a, #0f1b24);"></div>
+            <div class="gallery-caption">Luxury guest journey optimization</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section container" id="process">
+        <div class="section-head">
+          <div class="eyebrow">Process</div>
+          <h2>Simple, strategic, and conversion-focused.</h2>
+        </div>
+
+        <div class="process-grid">
+          <div class="card process-card">
+            <span>01</span>
+            <h3>Discover</h3>
+            <p>We understand your positioning, customer journey, and goals.</p>
+          </div>
+          <div class="card process-card">
+            <span>02</span>
+            <h3>Design</h3>
+            <p>We craft premium visuals and experience architecture around value.</p>
+          </div>
+          <div class="card process-card">
+            <span>03</span>
+            <h3>Build</h3>
+            <p>We implement polished, responsive pages tailored to real performance.</p>
+          </div>
+          <div class="card process-card">
+            <span>04</span>
+            <h3>Grow</h3>
+            <p>We optimize traction, leads, and brand visibility over time.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section container" id="pricing">
+        <div class="section-head">
+          <div class="eyebrow">Pricing</div>
+          <h2>Flexible packages for hospitality growth.</h2>
+        </div>
+
+        <div class="pricing-grid">
+          <div class="card pricing-card">
+            <div class="label">Starter</div>
+            <h3>Launch</h3>
+            <div class="price">₹24k</div>
+            <p>Ideal for hotels that need a polished digital front door.</p>
+            <ul>
+              <li>Landing page design</li>
+              <li>Booking CTA setup</li>
+              <li>2 rounds of revisions</li>
+            </ul>
+            <a class="btn btn-secondary" href="#contact">Get Started</a>
+          </div>
+
+          <div class="card pricing-card featured">
+            <div class="label">Most Popular</div>
+            <h3>Growth</h3>
+            <div class="price">₹54k</div>
+            <p>For brands that want conversion-focused hospitality growth.</p>
+            <ul>
+              <li>Multi-section website</li>
+              <li>Lead funnel and forms</li>
+              <li>SEO + copy support</li>
+            </ul>
+            <a class="btn btn-primary" href="#contact">Book a Call</a>
+          </div>
+
+          <div class="card pricing-card">
+            <div class="label">Custom</div>
+            <h3>Signature</h3>
+            <div class="price">Custom</div>
+            <p>Tailored solutions for resorts, collections, and premium portfolios.</p>
+            <ul>
+              <li>Advanced strategy</li>
+              <li>Custom CRM flows</li>
+              <li>Multi-property support</li>
+            </ul>
+            <a class="btn btn-secondary" href="#contact">Ask for Quote</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section container" id="contact">
+        <div class="section-head">
+          <div class="eyebrow">Contact</div>
+          <h2>Tell us about your property or next hospitality project.</h2>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-box">
+            <h3>Let’s talk</h3>
+            <p>We’ll help you sharpen the guest journey and elevate the brand experience.</p>
+            <ul class="contact-list">
+              <li><strong>Email:</strong> hello@trueculture.in</li>
+              <li><strong>Phone:</strong> +91 98765 43210</li>
+              <li><strong>Location:</strong> India • Remote worldwide</li>
+            </ul>
+          </div>
+
+          <div class="enquiry-panel">
+            <form id="publicEnquiryForm" class="enquiry-form" novalidate>
+              <div class="field-row">
+                <div class="field-group">
+                  <label for="guestName">Full Name</label>
+                  <input id="guestName" name="guestName" type="text" placeholder="John Doe" required />
+                </div>
+                <div class="field-group">
+                  <label for="guestPhone">Phone</label>
+                  <input id="guestPhone" name="guestPhone" type="tel" placeholder="+91 98765 43210" required />
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label for="guestEmail">Email</label>
+                <input id="guestEmail" name="guestEmail" type="email" placeholder="you@example.com" required />
+              </div>
+
+              <div class="field-group">
+                <label for="hotelName">Property / Brand</label>
+                <input id="hotelName" name="hotelName" type="text" placeholder="Azure Cove Resort" required />
+              </div>
+
+              <div class="field-group">
+                <label for="projectType">Project Type</label>
+                <input id="projectType" name="projectType" type="text" placeholder="Website design, booking setup, marketing" required />
+              </div>
+
+              <div class="field-group">
+                <label for="message">Project Details</label>
+                <textarea id="message" name="message" placeholder="Tell us about your requirements..." required></textarea>
+              </div>
+
+              <div id="publicEnquiryStatus" class="status-message" aria-live="polite"></div>
+              <button class="btn btn-primary" type="submit">Send Enquiry</button>
+            </form>
           </div>
         </div>
       </section>
     </main>
 
+    <footer>
+      <div class="container footer-inner">
+        <div>© 2026 TRUE CULTURE</div>
+        <div>Luxury hospitality digital experiences</div>
+      </div>
+    </footer>
+
     <script>
       const loginDropdown = document.getElementById('loginDropdown');
       const loginBtn = loginDropdown.querySelector('.login-btn');
-
       loginBtn.addEventListener('click', function (event) {
         event.stopPropagation();
         loginDropdown.classList.toggle('open');
       });
-
       document.addEventListener('click', function (event) {
         if (!event.target.closest('.login-dropdown')) {
           loginDropdown.classList.remove('open');
         }
+      });
+
+      const publicEnquiryForm = document.getElementById('publicEnquiryForm');
+      const publicEnquiryStatus = document.getElementById('publicEnquiryStatus');
+
+      publicEnquiryForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        const formData = new FormData(publicEnquiryForm);
+        const guestName = (formData.get('guestName') || '').toString().trim();
+        const guestPhone = (formData.get('guestPhone') || '').toString().trim();
+        const guestEmail = (formData.get('guestEmail') || '').toString().trim();
+        const hotelName = (formData.get('hotelName') || '').toString().trim();
+        const projectType = (formData.get('projectType') || '').toString().trim();
+        const message = (formData.get('message') || '').toString().trim();
+
+        if (!guestName || !guestPhone || !guestEmail || !hotelName || !projectType || !message) {
+          publicEnquiryStatus.textContent = 'Please fill in all required fields.';
+          publicEnquiryStatus.classList.remove('success');
+          return;
+        }
+
+        const enquiries = JSON.parse(localStorage.getItem('tcPublicEnquiries') || '[]');
+        enquiries.push({ guestName, guestPhone, guestEmail, hotelName, projectType, message, createdAt: new Date().toISOString() });
+        localStorage.setItem('tcPublicEnquiries', JSON.stringify(enquiries));
+
+        publicEnquiryStatus.textContent = 'Enquiry submitted successfully.';
+        publicEnquiryStatus.classList.add('success');
+        publicEnquiryForm.reset();
       });
     </script>
   </body>

@@ -35,6 +35,7 @@
       }
       a { color: inherit; text-decoration: none; }
       button { font: inherit; }
+      input, textarea, select { font: inherit; }
 
       .admin-shell {
         display: grid;
@@ -158,13 +159,15 @@
 
       .pill,
       .primary-btn,
-      .ghost-btn {
+      .ghost-btn,
+      .danger-btn {
         border-radius: 12px;
         border: 1px solid var(--line);
         background: rgba(255,255,255,0.02);
         color: var(--text);
         padding: 10px 14px;
         font-weight: 700;
+        cursor: pointer;
       }
 
       .primary-btn {
@@ -172,6 +175,18 @@
         color: #0d1b28;
         border: none;
         box-shadow: 0 18px 30px rgba(242, 199, 125, 0.2);
+      }
+
+      .ghost-btn {
+        background: rgba(242,199,125,0.08);
+        color: var(--gold-soft);
+        border-color: rgba(242,199,125,0.15);
+      }
+
+      .danger-btn {
+        background: rgba(255, 189, 159, 0.08);
+        color: var(--danger);
+        border-color: rgba(255, 189, 159, 0.12);
       }
 
       .stats-grid {
@@ -234,7 +249,7 @@
 
       .content-grid {
         display: grid;
-        grid-template-columns: minmax(0, 1.7fr) 360px;
+        grid-template-columns: minmax(0, 1.5fr) 360px;
         gap: 20px;
       }
 
@@ -300,6 +315,46 @@
         color: var(--muted);
         font-size: 12px;
         text-align: center;
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+      }
+
+      .field-group {
+        display: grid;
+        gap: 8px;
+      }
+
+      .field-group label {
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .field-group input,
+      .field-group select,
+      .field-group textarea {
+        width: 100%;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 12px 14px;
+        background: rgba(255,255,255,0.02);
+        color: var(--text);
+      }
+
+      .field-group textarea {
+        min-height: 110px;
+        resize: vertical;
+      }
+
+      .enquiry-status {
+        min-height: 20px;
+        font-size: 13px;
+        color: var(--success);
+        margin-top: 10px;
       }
 
       .booking-table {
@@ -388,12 +443,6 @@
         margin-top: 10px;
       }
 
-      .ghost-btn {
-        background: rgba(242,199,125,0.08);
-        color: var(--gold-soft);
-        border-color: rgba(242,199,125,0.15);
-      }
-
       @media (max-width: 1100px) {
         .stats-grid { grid-template-columns: repeat(2, minmax(180px, 1fr)); }
         .content-grid { grid-template-columns: 1fr; }
@@ -410,6 +459,7 @@
         .topbar { flex-direction: column; align-items: flex-start; }
         .top-actions { width: 100%; }
         .top-actions > * { flex: 1; }
+        .form-grid { grid-template-columns: 1fr; }
       }
     </style>
   </head>
@@ -454,6 +504,7 @@
             <button class="pill" type="button">This Month</button>
             <button class="ghost-btn" type="button">Export</button>
             <button class="primary-btn" type="button">+ New Booking</button>
+            <button class="danger-btn" id="logoutBtn" type="button">Logout</button>
           </div>
         </div>
 
@@ -499,71 +550,71 @@
           <div>
             <div class="panel">
               <div class="panel-header">
-                <h3>Monthly Performance</h3>
-                <a href="#">View report</a>
+                <h3>Submit Enquiry</h3>
+                <a href="#">New lead</a>
               </div>
 
-              <div class="chart-box">
-                <div class="bars" aria-label="Monthly performance chart">
-                  <div class="bar" style="height: 44%"></div>
-                  <div class="bar" style="height: 61%"></div>
-                  <div class="bar" style="height: 52%"></div>
-                  <div class="bar" style="height: 72%"></div>
-                  <div class="bar" style="height: 68%"></div>
-                  <div class="bar" style="height: 86%"></div>
+              <form id="enquiryForm">
+                <div class="form-grid">
+                  <div class="field-group">
+                    <label for="guestName">Guest Name</label>
+                    <input id="guestName" name="guestName" type="text" placeholder="Enter full name" required />
+                  </div>
+                  <div class="field-group">
+                    <label for="guestEmail">Email</label>
+                    <input id="guestEmail" name="guestEmail" type="email" placeholder="guest@example.com" required />
+                  </div>
+                  <div class="field-group">
+                    <label for="guestPhone">Phone</label>
+                    <input id="guestPhone" name="guestPhone" type="tel" placeholder="+91 98765 43210" required />
+                  </div>
+                  <div class="field-group">
+                    <label for="hotelName">Property / Hotel</label>
+                    <input id="hotelName" name="hotelName" type="text" placeholder="Azure Cove Resort" required />
+                  </div>
+                  <div class="field-group">
+                    <label for="enquiryType">Requirement</label>
+                    <select id="enquiryType" name="enquiryType">
+                      <option value="Hotel Website Design">Hotel Website Design</option>
+                      <option value="Booking App Development">Booking App Development</option>
+                      <option value="Digital Marketing">Digital Marketing</option>
+                      <option value="Brand Strategy">Brand Strategy</option>
+                    </select>
+                  </div>
+                  <div class="field-group">
+                    <label for="visitDate">Preferred Date</label>
+                    <input id="visitDate" name="visitDate" type="date" />
+                  </div>
                 </div>
-              </div>
-              <div class="chart-labels">
-                <span>Jan</span>
-                <span>Feb</span>
-                <span>Mar</span>
-                <span>Apr</span>
-                <span>May</span>
-                <span>Jun</span>
-              </div>
+
+                <div class="field-group" style="margin-top:16px;">
+                  <label for="message">Enquiry Details</label>
+                  <textarea id="message" name="message" placeholder="Tell us about your requirements..." required></textarea>
+                </div>
+
+                <div style="display:flex;justify-content:flex-start;align-items:center;gap:16px;margin-top:10px;flex-wrap:wrap;">
+                  <button class="primary-btn" type="submit">Submit Enquiry</button>
+                  <span id="enquiryStatus" class="enquiry-status" aria-live="polite"></span>
+                </div>
+              </form>
             </div>
 
             <div class="panel" style="margin-top: 20px;">
               <div class="panel-header">
-                <h3>Recent Bookings</h3>
-                <a href="#">All bookings</a>
+                <h3>Recent Enquiries</h3>
+                <a href="#">All leads</a>
               </div>
 
-              <table class="booking-table" aria-label="Recent bookings table">
+              <table class="booking-table" aria-label="Recent enquiries table">
                 <thead>
                   <tr>
                     <th>Guest</th>
-                    <th>Property</th>
-                    <th>Dates</th>
+                    <th>Hotel</th>
+                    <th>Type</th>
                     <th>Status</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td>Arjun Narang</td>
-                    <td>Azure Cove</td>
-                    <td>12 - 15 Jun</td>
-                    <td><span class="status confirmed">Confirmed</span></td>
-                  </tr>
-                  <tr>
-                    <td>Riya Mehta</td>
-                    <td>Golden Horizon</td>
-                    <td>16 - 18 Jun</td>
-                    <td><span class="status pending">Pending</span></td>
-                  </tr>
-                  <tr>
-                    <td>Vikram Singh</td>
-                    <td>Harbor & Co.</td>
-                    <td>19 - 22 Jun</td>
-                    <td><span class="status review">Review</span></td>
-                  </tr>
-                  <tr>
-                    <td>Naisha Kapoor</td>
-                    <td>Velvet Grand</td>
-                    <td>22 - 26 Jun</td>
-                    <td><span class="status confirmed">Confirmed</span></td>
-                  </tr>
-                </tbody>
+                <tbody id="enquiryTableBody"></tbody>
               </table>
             </div>
           </div>
@@ -608,5 +659,86 @@
         </section>
       </main>
     </div>
+
+    <script>
+      const AUTH_KEY = 'tcAdminLoggedIn';
+      const USER_KEY = 'tcAdminCurrentUser';
+      const ENQUIRIES_KEY = 'tcEnquiries';
+
+      const isLoggedIn = localStorage.getItem(AUTH_KEY) === 'true';
+      if (!isLoggedIn) {
+        window.location.href = 'login.html';
+      }
+
+      const userName = localStorage.getItem(USER_KEY) || 'Admin';
+      document.querySelector('.page-title p').textContent = `Welcome back, ${userName}`;
+
+      const enquiryForm = document.getElementById('enquiryForm');
+      const enquiryStatus = document.getElementById('enquiryStatus');
+      const enquiryTableBody = document.getElementById('enquiryTableBody');
+
+      function getEnquiries() {
+        const saved = JSON.parse(localStorage.getItem(ENQUIRIES_KEY) || '[]');
+        return Array.isArray(saved) ? saved : [];
+      }
+
+      function renderEnquiries() {
+        const enquiries = getEnquiries();
+
+        if (!enquiries.length) {
+          enquiryTableBody.innerHTML = `
+            <tr>
+              <td colspan="4" style="color: var(--muted); text-align:center; padding: 20px;">No enquiries yet.</td>
+            </tr>
+          `;
+          return;
+        }
+
+        enquiryTableBody.innerHTML = enquiries.slice().reverse().map((item) => `
+          <tr>
+            <td>${item.guestName}</td>
+            <td>${item.hotelName}</td>
+            <td>${item.enquiryType}</td>
+            <td><span class="status ${item.status === 'Confirmed' ? 'confirmed' : item.status === 'Review' ? 'review' : 'pending'}">${item.status || 'Pending'}</span></td>
+          </tr>
+        `).join('');
+      }
+
+      enquiryForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const formData = new FormData(enquiryForm);
+        const enquiry = {
+          guestName: formData.get('guestName').toString().trim(),
+          guestEmail: formData.get('guestEmail').toString().trim(),
+          guestPhone: formData.get('guestPhone').toString().trim(),
+          hotelName: formData.get('hotelName').toString().trim(),
+          enquiryType: formData.get('enquiryType').toString().trim(),
+          visitDate: formData.get('visitDate').toString().trim(),
+          message: formData.get('message').toString().trim(),
+          status: 'Pending'
+        };
+
+        if (!enquiry.guestName || !enquiry.guestEmail || !enquiry.guestPhone || !enquiry.hotelName || !enquiry.message) {
+          enquiryStatus.textContent = 'Please fill in all required fields.';
+          return;
+        }
+
+        const enquiries = getEnquiries();
+        enquiries.push(enquiry);
+        localStorage.setItem(ENQUIRIES_KEY, JSON.stringify(enquiries));
+        enquiryStatus.textContent = 'Enquiry submitted successfully.';
+        enquiryForm.reset();
+        renderEnquiries();
+      });
+
+      document.getElementById('logoutBtn').addEventListener('click', function () {
+        localStorage.removeItem(AUTH_KEY);
+        localStorage.removeItem(USER_KEY);
+        window.location.href = 'login.html';
+      });
+
+      renderEnquiries();
+    </script>
   </body>
 </html>

@@ -152,7 +152,7 @@
       }
 
       .login-card {
-        width: min(420px, 100%);
+        width: min(440px, 100%);
         padding: 34px 28px;
         border-radius: 22px;
         border: 1px solid var(--line);
@@ -179,6 +179,33 @@
         box-shadow: 0 16px 30px rgba(242, 199, 125, 0.18);
       }
 
+      .mode-toggle {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        background: rgba(255,255,255,0.02);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 5px;
+        margin-bottom: 20px;
+      }
+
+      .mode-btn {
+        border: none;
+        background: transparent;
+        color: var(--muted);
+        border-radius: 10px;
+        padding: 10px 12px;
+        font-size: 13px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .mode-btn.active {
+        background: rgba(242, 199, 125, 0.12);
+        color: var(--gold-soft);
+      }
+
       .login-card h2 {
         margin: 0;
         text-align: center;
@@ -196,6 +223,12 @@
       form {
         display: grid;
         gap: 18px;
+      }
+
+      .field-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
       }
 
       label {
@@ -227,7 +260,7 @@
         box-shadow: 0 0 0 4px rgba(242, 199, 125, 0.12);
       }
 
-      .row {
+      .helper-row {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -237,20 +270,7 @@
         font-size: 13px;
       }
 
-      .remember {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        cursor: pointer;
-      }
-
-      .remember input {
-        width: 16px;
-        height: 16px;
-        accent-color: var(--gold);
-      }
-
-      .row a {
+      .helper-row a {
         color: var(--gold-soft);
         text-decoration: none;
       }
@@ -316,6 +336,10 @@
         .brand-panel {
           padding: 28px 20px;
         }
+
+        .field-row {
+          grid-template-columns: 1fr;
+        }
       }
     </style>
   </head>
@@ -345,10 +369,15 @@
             <div class="mini-logo">TC</div>
           </div>
 
-          <h2>Admin Login</h2>
-          <p class="subtitle">Sign in to continue to your dashboard</p>
+          <div class="mode-toggle" aria-label="Authentication mode switch">
+            <button class="mode-btn active" type="button" data-mode="login">Login</button>
+            <button class="mode-btn" type="button" data-mode="signup">Sign Up</button>
+          </div>
 
-          <form id="adminLoginForm" novalidate>
+          <form id="loginForm" novalidate>
+            <h2>Admin Login</h2>
+            <p class="subtitle">Sign in to continue to your dashboard</p>
+
             <label>
               Email address
               <input type="email" name="email" placeholder="admin@trueculture.com" required />
@@ -359,17 +388,50 @@
               <input type="password" name="password" placeholder="Enter your password" required />
             </label>
 
-            <div class="row">
-              <label class="remember">
+            <div class="helper-row">
+              <label style="display:flex;align-items:center;gap:8px;font-weight:600;">
                 <input type="checkbox" name="remember" />
                 Remember me
               </label>
               <a href="#">Forgot password?</a>
             </div>
 
-            <div id="statusMessage" class="status-message" aria-live="polite"></div>
-
+            <div id="loginStatus" class="status-message" aria-live="polite"></div>
             <button class="primary-btn" type="submit">Login</button>
+          </form>
+
+          <form id="signupForm" novalidate style="display:none;">
+            <h2>Create Account</h2>
+            <p class="subtitle">Sign up to manage enquiries and bookings</p>
+
+            <div class="field-row">
+              <label>
+                Full name
+                <input type="text" name="name" placeholder="John Doe" required />
+              </label>
+              <label>
+                Phone
+                <input type="tel" name="phone" placeholder="9876543210" required />
+              </label>
+            </div>
+
+            <label>
+              Email address
+              <input type="email" name="email" placeholder="you@example.com" required />
+            </label>
+
+            <label>
+              Password
+              <input type="password" name="password" placeholder="Create a strong password" required />
+            </label>
+
+            <label>
+              Confirm password
+              <input type="password" name="confirmPassword" placeholder="Re-enter password" required />
+            </label>
+
+            <div id="signupStatus" class="status-message" aria-live="polite"></div>
+            <button class="primary-btn" type="submit">Create Account</button>
           </form>
 
           <div class="footer-note">
@@ -380,52 +442,120 @@
     </main>
 
     <script>
-      const form = document.getElementById('adminLoginForm');
-      const status = document.getElementById('statusMessage');
+      const AUTH_KEY = 'tcAdminLoggedIn';
+      const USER_KEY = 'tcAdminCurrentUser';
+      const ACCOUNTS_KEY = 'tcAdminAccounts';
 
-      form.addEventListener('submit', async function (event) {
+      const defaultAccounts = [
+        { name: 'Admin', email: 'admin@trueculture.com', password: 'admin123', phone: '9876543210' }
+      ];
+
+      const loginForm = document.getElementById('loginForm');
+      const signupForm = document.getElementById('signupForm');
+      const loginStatus = document.getElementById('loginStatus');
+      const signupStatus = document.getElementById('signupStatus');
+      const modeButtons = document.querySelectorAll('.mode-btn');
+
+      function getAccounts() {
+        const saved = JSON.parse(localStorage.getItem(ACCOUNTS_KEY) || 'null');
+        if (!saved || !Array.isArray(saved) || saved.length === 0) {
+          localStorage.setItem(ACCOUNTS_KEY, JSON.stringify(defaultAccounts));
+          return defaultAccounts;
+        }
+        return saved;
+      }
+
+      function setActiveMode(mode) {
+        const isLogin = mode === 'login';
+        loginForm.style.display = isLogin ? 'grid' : 'none';
+        signupForm.style.display = isLogin ? 'none' : 'grid';
+        modeButtons.forEach((button) => {
+          const active = button.dataset.mode === mode;
+          button.classList.toggle('active', active);
+        });
+      }
+
+      modeButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          setActiveMode(button.dataset.mode);
+          loginStatus.textContent = '';
+          signupStatus.textContent = '';
+        });
+      });
+
+      loginForm.addEventListener('submit', function (event) {
         event.preventDefault();
 
-        const email = form.email.value.trim();
-        const password = form.password.value.trim();
+        const email = loginForm.email.value.trim();
+        const password = loginForm.password.value.trim();
 
         if (!email || !password) {
-          status.textContent = 'Please enter both email and password.';
-          status.classList.remove('success');
+          loginStatus.textContent = 'Please enter both email and password.';
+          loginStatus.classList.remove('success');
           return;
         }
 
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-          status.textContent = 'Please enter a valid email address.';
-          status.classList.remove('success');
+        const accounts = getAccounts();
+        const match = accounts.find((account) => account.email.toLowerCase() === email.toLowerCase() && account.password === password);
+
+        if (!match) {
+          loginStatus.textContent = 'Invalid email or password.';
+          loginStatus.classList.remove('success');
           return;
         }
 
-        status.textContent = 'Signing in...';
-        status.classList.remove('success');
+        localStorage.setItem(AUTH_KEY, 'true');
+        localStorage.setItem(USER_KEY, match.name || 'Admin');
+        loginStatus.textContent = 'Login successful. Redirecting...';
+        loginStatus.classList.add('success');
+        setTimeout(() => {
+          window.location.href = '/admin/index.html';
+        }, 600);
+      });
 
-        try {
-          const response = await fetch('/api/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, password })
-          });
+      signupForm.addEventListener('submit', function (event) {
+        event.preventDefault();
 
-          const data = await response.json();
+        const name = signupForm.name.value.trim();
+        const phone = signupForm.phone.value.trim();
+        const email = signupForm.email.value.trim();
+        const password = signupForm.password.value.trim();
+        const confirmPassword = signupForm.confirmPassword.value.trim();
 
-          if (!response.ok || !data.success) {
-            status.textContent = data.message || 'Login failed.';
-            return;
-          }
-
-          localStorage.setItem('tcAdminLoggedIn', 'true');
-          status.textContent = 'Login successful. Redirecting...';
-          status.classList.add('success');
-          window.location.href = data.redirect || '/admin/index.html';
-        } catch (error) {
-          status.textContent = 'Could not reach login service. Please try again.';
+        if (!name || !phone || !email || !password || !confirmPassword) {
+          signupStatus.textContent = 'Please fill in all fields.';
+          return;
         }
+
+        if (password.length < 6) {
+          signupStatus.textContent = 'Password must be at least 6 characters long.';
+          return;
+        }
+
+        if (password !== confirmPassword) {
+          signupStatus.textContent = 'Passwords do not match.';
+          return;
+        }
+
+        const accounts = getAccounts();
+        const exists = accounts.some((account) => account.email.toLowerCase() === email.toLowerCase());
+
+        if (exists) {
+          signupStatus.textContent = 'An account with this email already exists.';
+          return;
+        }
+
+        const newAccount = { name, phone, email, password };
+        accounts.push(newAccount);
+        localStorage.setItem(ACCOUNTS_KEY, JSON.stringify(accounts));
+        localStorage.setItem(AUTH_KEY, 'true');
+        localStorage.setItem(USER_KEY, name);
+
+        signupStatus.textContent = 'Account created successfully. Redirecting...';
+        signupStatus.classList.add('success');
+        setTimeout(() => {
+          window.location.href = '/admin/index.html';
+        }, 600);
       });
     </script>
   </body>

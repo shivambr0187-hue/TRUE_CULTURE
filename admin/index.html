@@ -665,11 +665,6 @@
       const USER_KEY = 'tcAdminCurrentUser';
       const ENQUIRIES_KEY = 'tcEnquiries';
 
-      const isLoggedIn = localStorage.getItem(AUTH_KEY) === 'true';
-      if (!isLoggedIn) {
-        window.location.href = 'login.html';
-      }
-
       const userName = localStorage.getItem(USER_KEY) || 'Admin';
       document.querySelector('.page-title p').textContent = `Welcome back, ${userName}`;
 
@@ -735,7 +730,7 @@
       document.getElementById('logoutBtn').addEventListener('click', function () {
         localStorage.removeItem(AUTH_KEY);
         localStorage.removeItem(USER_KEY);
-        window.location.href = 'login.html';
+        window.location.href = '/admin/login.html';
       });
 
       renderEnquiries();
